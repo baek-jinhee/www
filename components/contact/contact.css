@@ -1,0 +1,250 @@
+/* ---- Contact Layout ---- */
+.contact-layout {
+    display: flex;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+    align-items: flex-start;
+}
+
+/* ---- Contact Form (Left Side) ---- */
+.contact-form-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-form-wrapper h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.contact-subtitle {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #bbb;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #333;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid #e8dce8;
+    border-radius: 8px;
+    outline: none;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #ccc;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #d8a8d8;
+    box-shadow: 0 0 0 3px rgba(216, 168, 216, 0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.6;
+}
+
+/* ---- Send Button ---- */
+.contact-send-btn {
+    align-self: flex-start;
+    padding: 0.6rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    color: #888;
+    background: transparent;
+    border: 2px solid #e0cfe0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-send-btn:hover {
+    background: rgba(216, 168, 216, 0.15);
+    border-color: #d8a8d8;
+    color: #555;
+    transform: translateY(-1px);
+}
+
+.contact-send-btn:active {
+    transform: translateY(0);
+}
+
+.contact-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.contact-send-btn.sending {
+    color: #bbb;
+    border-color: #ddd;
+}
+
+/* ---- Status Message ---- */
+.contact-status {
+    font-size: 0.85rem;
+    min-height: 1.4em;
+    margin-top: 0.25rem;
+    transition: opacity 0.3s ease;
+}
+
+.contact-status.success {
+    color: #8bc49e;
+}
+
+.contact-status.error {
+    color: #e08a8a;
+}
+
+/* ---- Pagedoll / Character Illustration (Right Side) ---- */
+.contact-pagedoll {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.contact-pagedoll img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* subtle floating animation */
+    animation: pagedollFloat 4s ease-in-out infinite;
+}
+
+.pagedoll-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border: 2px dashed #e0cfe0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+@keyframes pagedollFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ---- Fade-in animation ---- */
+.contact-layout {
+    animation: contactFadeIn 0.5s ease forwards;
+}
+
+@keyframes contactFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+/* ---- Tablet ---- */
+@media screen and (max-width: 768px) {
+    .contact-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 1.5rem 2rem;
+    }
+
+    .contact-form-wrapper {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .contact-pagedoll {
+        display: none;
+    }
+
+    .contact-send-btn {
+        align-self: center;
+    }
+
+    .contact-subtitle {
+        text-align: center;
+    }
+
+    .contact-form-wrapper h2 {
+        text-align: center;
+    }
+}
+
+/* ---- Mobile ---- */
+@media screen and (max-width: 480px) {
+    .contact-layout {
+        padding: 0 1rem 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .contact-send-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
