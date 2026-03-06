@@ -56,6 +56,8 @@
                                 <div class="about-flair-row buttons-88x31">
                                     <img
                                         src="../assets/web flair/88x31/jinhee.art.webp"
+                                        style="cursor: pointer;"
+                                        onclick="document.getElementById('button88x31Modal').style.display='flex'"
                                     />
                                     <a
                                         href="https://giannirosato.com/"
@@ -360,6 +362,90 @@
         </main>
 
         <footer class="copyright">&copy; 2026 Jin Hee Baek / All Rights Reserved.</footer>
+
+        <!-- 88x31 Button Modal -->
+        <div id="button88x31Modal" style="
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        " onclick="if(event.target===this)this.style.display='none'">
+            <div style="
+                background: white;
+                border-radius: 14px;
+                padding: 2rem;
+                max-width: 420px;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+                position: relative;
+            ">
+                <button onclick="document.getElementById('button88x31Modal').style.display='none'" style="
+                    position: absolute;
+                    top: 0.75rem;
+                    right: 0.75rem;
+                    background: none;
+                    border: none;
+                    font-size: 1.25rem;
+                    color: #999;
+                    cursor: pointer;
+                    line-height: 1;
+                ">✕</button>
+                <img
+                    src="../assets/web flair/88x31/jinhee.art.webp"
+                    alt="jinhee.art 88x31 button"
+                    style="image-rendering: pixelated; width: 88px; height: 31px; margin-bottom: 1rem;"
+                />
+                <p style="
+                    font-size: 0.85rem;
+                    color: #666;
+                    line-height: 1.6;
+                    margin-bottom: 1rem;
+                ">this is my 88x31 button, you can link to me with this or host it on your own site :3</p>
+                <div style="position: relative;">
+                    <button onclick="
+                        var ta = this.parentElement.querySelector('textarea');
+                        ta.select();
+                        navigator.clipboard.writeText(ta.value);
+                        this.textContent = '✓';
+                        setTimeout(() => this.textContent = '⧉', 1500);
+                    " style="
+                        position: absolute;
+                        top: 0.5rem;
+                        right: 0.5rem;
+                        background: rgba(255,255,255,0.8);
+                        border: 1px solid #e0cfe0;
+                        border-radius: 5px;
+                        padding: 0.2rem 0.4rem;
+                        font-size: 0.75rem;
+                        color: #999;
+                        cursor: pointer;
+                        line-height: 1;
+                        z-index: 1;
+                    ">⧉</button>
+                    <textarea readonly onclick="this.select()" style="
+                        width: 100%;
+                        font-family: 'Courier New', monospace;
+                        font-size: 0.7rem;
+                        background: #f5f0f5;
+                        border: 2px solid #f0e6f0;
+                        border-radius: 8px;
+                        padding: 0.75rem;
+                        padding-right: 2.5rem;
+                        color: #666;
+                        resize: none;
+                        line-height: 1.5;
+                        text-align: left;
+                    " rows="3"><a href="https://jinhee.art" target="_blank"><img src="https://jinhee.art/assets/web%20flair/88x31/jinhee.art.webp" alt="jinhee.art" width="88" height="31" /></a></textarea>
+                </div>
+            </div>
+        </div>
 
         <script src="../components/navbar/navbar.js"></script>
         <script src="../components/sparkle/sparkle.js"></script>
