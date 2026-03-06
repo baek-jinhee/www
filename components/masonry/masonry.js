@@ -7,44 +7,44 @@
 const galleries = {
   2026: [
     {
-      src: "../assets/images/illustration/mane6.JPG",
+      src: "../assets/images/illustration/mane6.jpg",
       alt: "First image",
       w: 2256,
       h: 1504,
     },
     {
-      src: "../assets/images/illustration/celine.PNG",
+      src: "../assets/images/illustration/celine.png",
       alt: "Second image",
       w: 1504,
       h: 1840,
     },
     {
-      src: "../assets/images/illustration/pony2.PNG",
+      src: "../assets/images/illustration/pony2.png",
       alt: "Third image",
       w: 1688,
       h: 1592,
     },
     {
-      src: "../assets/images/illustration/wish.PNG",
+      src: "../assets/images/illustration/wish.png",
       alt: "Fourth image",
       w: 662,
       h: 1466,
     },
     {
-      src: "../assets/images/illustration/wish_ref.PNG",
+      src: "../assets/images/illustration/wish_ref.png",
       alt: "Fifth image",
       w: 1504,
       h: 1504,
     },
 
     {
-      src: "../assets/images/illustration/wish2.PNG",
+      src: "../assets/images/illustration/wish2.png",
       alt: "Sixth image",
       w: 3416,
       h: 2744,
     },
     {
-      src: "../assets/images/illustration/pony1.PNG",
+      src: "../assets/images/illustration/pony1.png",
       alt: "7th image",
       w: 300,
       h: 400,
