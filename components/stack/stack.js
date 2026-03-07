@@ -1,4 +1,4 @@
-class Stack {
+export class Stack {
   constructor(container, options = {}) {
     this.container = container;
     this.options = {
@@ -87,7 +87,7 @@ class Stack {
 
       // Click to send to back
       if (this.options.sendToBackOnClick) {
-        wrapper.addEventListener("click", (e) => {
+        wrapper.addEventListener("click", () => {
           if (!this.dragState || !this.dragState.didDrag) {
             this.sendToBack(card.id);
           }
@@ -102,12 +102,9 @@ class Stack {
     let currentX = 0;
     let currentY = 0;
     let isDragging = false;
-    let didDrag = false;
-
     const onPointerDown = (e) => {
       e.preventDefault();
       isDragging = true;
-      didDrag = false;
       startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
       startY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
       currentX = 0;
@@ -125,14 +122,14 @@ class Stack {
       currentY = (clientY - startY) * 0.6;
 
       if (Math.abs(currentX) > 3 || Math.abs(currentY) > 3) {
-        didDrag = true;
         this.dragState = { didDrag: true };
       }
 
       const rotateX = (currentY / 100) * -60;
       const rotateY = (currentX / 100) * 60;
 
-      wrapper.style.transform = `translate(${currentX}px, ${currentY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      wrapper.style.transform =
+        `translate(${currentX}px, ${currentY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
 
     const onPointerUp = () => {

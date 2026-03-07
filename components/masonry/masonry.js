@@ -73,8 +73,7 @@ function addImageToColumns(img) {
   const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
   const imageHeight = (img.h / img.w) * 100;
 
-  columnStrings[shortestColumn] +=
-    '<img src="' +
+  columnStrings[shortestColumn] += '<img src="' +
     img.src +
     '" alt="' +
     img.alt +

@@ -1,135 +1,133 @@
 /* ---- Year Tabs ---- */
 .year-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-    margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .year-tab {
-    padding: 0.4rem 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    font-family: inherit;
-    border: 2px solid #e0cfe0;
-    border-radius: 20px;
-    background: transparent;
-    color: #999;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 0.4rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-family: inherit;
+  border: 2px solid #e0cfe0;
+  border-radius: 20px;
+  background: transparent;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .year-tab:hover {
-    background: rgba(216, 168, 216, 0.15);
-    border-color: #d8a8d8;
-    color: #666;
+  background: rgba(216, 168, 216, 0.15);
+  border-color: #d8a8d8;
+  color: #666;
 }
 
 .year-tab.active {
-    background: rgba(216, 168, 216, 0.25);
-    border-color: #d8a8d8;
-    color: #333;
+  background: rgba(216, 168, 216, 0.25);
+  border-color: #d8a8d8;
+  color: #333;
 }
 
 /* ---- Masonry Gallery ---- */
 #gallery {
-    display: flex;
-    gap: 8px;
-    padding: 0 1rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  padding: 0 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 #gallery > div {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 
 #gallery img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 6px;
-    cursor: pointer;
-    transition:
-        transform 0.3s ease,
-        filter 0.3s ease;
-    object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  object-fit: cover;
 }
 
 #gallery img:hover {
-    transform: scale(0.97);
-    filter: brightness(0.9);
+  transform: scale(0.97);
+  filter: brightness(0.9);
 }
 
 /* ---- Lightbox Overlay ---- */
 .lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    cursor: zoom-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
 }
 
 .lightbox-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .lightbox-overlay img {
-    max-width: 90vw;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    cursor: default;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  cursor: default;
 }
 
 /* ---- Fade-in animation for gallery swap ---- */
 #gallery.fade-in {
-    animation: galleryFadeIn 0.35s ease forwards;
+  animation: galleryFadeIn 0.35s ease forwards;
 }
 
 @keyframes galleryFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---- Responsive ---- */
 @media screen and (max-width: 600px) {
-    #gallery {
-        gap: 6px;
-        padding: 0 0.5rem 1.5rem;
-    }
+  #gallery {
+    gap: 6px;
+    padding: 0 0.5rem 1.5rem;
+  }
 
-    #gallery > div {
-        gap: 6px;
-    }
+  #gallery > div {
+    gap: 6px;
+  }
 
-    #gallery img {
-        border-radius: 4px;
-    }
+  #gallery img {
+    border-radius: 4px;
+  }
 }

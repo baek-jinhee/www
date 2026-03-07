@@ -10,6 +10,8 @@ This repo contains the personal website of Jinhee Baek.
 
 ## JavaScript
 
-- After editing a script, lint with `deno lint [script]` and ensure it passes all linter checks.
-- Run `deno lint --fix [script]` to automatically fix auto-fixable linter errors before intervening manually.
+- After editing a script, lint with `deno lint [script]` and ensure it passes
+  all linter checks.
+- Run `deno lint --fix [script]` to automatically fix auto-fixable linter errors
+  before intervening manually.
 - Run `deno fmt [script]` after finishing edits.

@@ -105,8 +105,9 @@ class MusicPlayer {
     this.playBtn.addEventListener("click", () => this.togglePlay());
     this.prevBtn.addEventListener("click", () => this.previousSong());
     this.nextBtn.addEventListener("click", () => this.nextSong());
-    this.progressBar.addEventListener("input", (e) =>
-      this.seek(e.target.value),
+    this.progressBar.addEventListener(
+      "input",
+      (e) => this.seek(e.target.value),
     );
     this.toggleBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -194,8 +195,8 @@ class MusicPlayer {
   }
 
   previousSong() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.songs.length) % this.songs.length;
+    this.currentIndex = (this.currentIndex - 1 + this.songs.length) %
+      this.songs.length;
     this.loadSong();
     if (this.isPlaying) this.play();
   }

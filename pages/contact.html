@@ -1,114 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-        />
-        <title>Contact - Jinhee Baek</title>
-        <link rel="stylesheet" href="../style.css" />
-        <link
-            rel="stylesheet"
-            href="../components/music-player/music-player.css"
-        />
-        <link rel="stylesheet" href="../components/contact/contact.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-    </head>
-    <body>
-        <main class="page-content">
-            <div class="page-header">
-                <h1>Contact ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Contact - Jinhee Baek</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="../components/music-player/music-player.css"
+    />
+    <link rel="stylesheet" href="../components/contact/contact.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main class="page-content">
+      <div class="page-header">
+        <h1>Contact ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</h1>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-form-wrapper">
+          <h2>Get in Touch</h2>
+          <p class="contact-subtitle">
+            Have a question, commission request, or just want to say hi? Drop me
+            a message and I'll get back to you!
+          </p>
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="from_name">Name</label>
+              <input
+                type="text"
+                id="from_name"
+                name="from_name"
+                placeholder="Your name"
+                required
+              />
             </div>
-            <div class="contact-layout">
-                <div class="contact-form-wrapper">
-                    <h2>Get in Touch</h2>
-                    <p class="contact-subtitle">
-                        Have a question, commission request, or just want to say
-                        hi? Drop me a message and I'll get back to you!
-                    </p>
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="from_name">Name</label>
-                            <input
-                                type="text"
-                                id="from_name"
-                                name="from_name"
-                                placeholder="Your name"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="from_email">Email</label>
-                            <input
-                                type="email"
-                                id="from_email"
-                                name="from_email"
-                                placeholder="your@email.com"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                placeholder="What's this about?"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                placeholder="Write your message here..."
-                                required
-                            ></textarea>
-                        </div>
-                        <button
-                            type="submit"
-                            id="contact-send-btn"
-                            class="contact-send-btn"
-                        >
-                            Send Message
-                        </button>
-                        <div id="contact-status" class="contact-status"></div>
-                    </form>
-                </div>
-
-                <div class="contact-pagedoll">
-                    <img
-                        src="../assets/images/pagedoll_pafrait.avif"
-                        alt="Jinhee's pagedoll"
-                    />
-                </div>
+            <div class="form-group">
+              <label for="from_email">Email</label>
+              <input
+                type="email"
+                id="from_email"
+                name="from_email"
+                placeholder="your@email.com"
+                required
+              />
             </div>
-        </main>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="What's this about?"
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              id="contact-send-btn"
+              class="contact-send-btn"
+            >
+              Send Message
+            </button>
+            <div id="contact-status" class="contact-status"></div>
+          </form>
+        </div>
 
-        <footer class="copyright">
-            &copy; 2026 Jin Hee Baek / All Rights Reserved.
-        </footer>
+        <div class="contact-pagedoll">
+          <img
+            src="../assets/images/pagedoll_pafrait.avif"
+            alt="Jinhee's pagedoll"
+          />
+        </div>
+      </div>
+    </main>
 
-        <!-- EmailJS SDK – load before contact.js -->
-        <script
-            type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-        ></script>
-        <script type="text/javascript">
-            (function () {
-                // Replace YOUR_PUBLIC_KEY with your actual EmailJS public key
-                if (typeof emailjs !== "undefined") {
-                    emailjs.init("0pQYfk1P4ewliqwUd");
-                }
-            })();
-        </script>
+    <footer class="copyright">
+      &copy; 2026 Jin Hee Baek / All Rights Reserved.
+    </footer>
 
-        <script src="../components/navbar/navbar.js"></script>
-        <script src="../components/contact/contact.js"></script>
-        <script src="../components/sparkle/sparkle.js"></script>
-    </body>
+    <!-- EmailJS SDK – load before contact.js -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        // Replace YOUR_PUBLIC_KEY with your actual EmailJS public key
+        if (typeof emailjs !== "undefined") {
+          emailjs.init("0pQYfk1P4ewliqwUd");
+        }
+      })();
+    </script>
+
+    <script src="../components/navbar/navbar.js"></script>
+    <script src="../components/contact/contact.js"></script>
+    <script src="../components/sparkle/sparkle.js"></script>
+  </body>
 </html>

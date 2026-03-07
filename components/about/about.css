@@ -1,347 +1,344 @@
 /* ---- About Page Layout ---- */
 .about-layout {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 2rem 3rem;
-    animation: aboutFadeIn 0.5s ease forwards;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+  animation: aboutFadeIn 0.5s ease forwards;
 }
 
 @keyframes aboutFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---- Section Shared Styles ---- */
 .about-section {
-    margin-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .about-section-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #bbb;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid #f0e6f0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #f0e6f0;
 }
 
 /* ---- About Me / Bio ---- */
 .about-bio {
-    overflow: hidden; /* contain floated avatar */
+  overflow: hidden; /* contain floated avatar */
 }
 
 .about-avatar {
-    float: left;
-    width: 160px;
-    margin-top: 0.25rem;
-    margin-right: 1rem;
+  float: left;
+  width: 160px;
+  margin-top: 0.25rem;
+  margin-right: 1rem;
 }
 
 .about-avatar img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
 }
 
 .about-avatar-placeholder {
-    width: 100%;
-    aspect-ratio: 1;
-    border: 2px dashed #e0cfe0;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ccc;
-    font-size: 0.75rem;
-    font-style: italic;
-    text-align: center;
-    padding: 0.75rem;
-    line-height: 1.4;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px dashed #e0cfe0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 0.75rem;
+  font-style: italic;
+  text-align: center;
+  padding: 0.75rem;
+  line-height: 1.4;
 }
 
 .about-bio-text p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
 }
 
 .about-bio-text p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* ---- Tools / Programs ---- */
 .about-tools-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .about-tool {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.75rem;
-    border: 2px solid #f0e6f0;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.5);
-    width: 90px;
-    aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  border: 2px solid #f0e6f0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  width: 90px;
+  aspect-ratio: 1;
 }
 
 .about-tool-icon {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-tool-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .about-tool-icon svg {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .about-tool-name {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #999;
-    letter-spacing: 0.03em;
-    text-align: center;
-    white-space: nowrap;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #999;
+  letter-spacing: 0.03em;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* ---- Education & Experience ---- */
 .about-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .about-timeline-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    padding: 0.75rem 1rem;
-    border-left: 3px solid #e8dce8;
-    border-radius: 0 8px 8px 0;
-    background: rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #e8dce8;
+  border-radius: 0 8px 8px 0;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
 }
 
 .about-timeline-item:hover {
-    border-left-color: #d8a8d8;
-    background: rgba(216, 168, 216, 0.06);
+  border-left-color: #d8a8d8;
+  background: rgba(216, 168, 216, 0.06);
 }
 
 .about-timeline-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #e0cfe0;
-    flex-shrink: 0;
-    margin-top: 0.5rem;
-    transition: background 0.3s ease;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0cfe0;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease;
 }
 
 .about-timeline-item:hover .about-timeline-dot {
-    background: #d8a8d8;
+  background: #d8a8d8;
 }
 
 .about-timeline-content {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .about-timeline-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.1rem;
 }
 
 .about-timeline-subtitle {
-    font-size: 0.8rem;
-    color: #bbb;
-    margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color: #bbb;
+  margin-bottom: 0.25rem;
 }
 
 .about-timeline-date {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #ccc;
-    margin-bottom: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 0.3rem;
 }
 
 .about-timeline-desc {
-    font-size: 0.85rem;
-    color: #888;
-    line-height: 1.6;
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.6;
 }
 
 /* ---- Web Flair: 88x31 Buttons, Stamps, Blinkies ---- */
 .about-flair-group {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .about-flair-group:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .about-flair-subtitle {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #ccc;
-    margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 0.5rem;
 }
 
 .about-flair-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-flair-row img {
-    display: block;
-    image-rendering: pixelated;
+  display: block;
+  image-rendering: pixelated;
 }
 
 /* 88x31 buttons */
 .about-flair-row.buttons-88x31 img {
-    width: 88px;
-    height: 31px;
+  width: 88px;
+  height: 31px;
 }
 
 /* Stamps – display at natural size */
 .about-flair-row.stamps img {
-    width: auto;
-    height: auto;
-    max-height: 56px;
+  width: auto;
+  height: auto;
+  max-height: 56px;
 }
 
 /* Blinkies (typically ~150x20 or similar) */
 .about-flair-row.blinkies img {
-    height: 20px;
-    width: auto;
+  height: 20px;
+  width: auto;
 }
 
 /* Placeholder for empty flair slots */
 .about-flair-placeholder {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #e0cfe0;
-    border-radius: 4px;
-    color: #ccc;
-    font-size: 0.65rem;
-    font-style: italic;
-    text-align: center;
-    padding: 0.25rem 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #e0cfe0;
+  border-radius: 4px;
+  color: #ccc;
+  font-size: 0.65rem;
+  font-style: italic;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
 }
 
 .about-flair-row.buttons-88x31 .about-flair-placeholder {
-    width: 88px;
-    height: 31px;
+  width: 88px;
+  height: 31px;
 }
 
 .about-flair-row.stamps .about-flair-placeholder {
-    width: 80px;
-    height: 80px;
+  width: 80px;
+  height: 80px;
 }
 
 .about-flair-row.blinkies .about-flair-placeholder {
-    width: 150px;
-    height: 20px;
+  width: 150px;
+  height: 20px;
 }
 
 /* ---- Collapsible Flair Box ---- */
 .about-flair-collapsible {
-    clear: both;
-    margin-top: 1.25rem;
-    border: 2px solid #f0e6f0;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.4);
-    overflow: hidden;
-    transition: border-color 0.3s ease;
+  clear: both;
+  margin-top: 1.25rem;
+  border: 2px solid #f0e6f0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
 }
 
 .about-flair-collapsible:hover {
-    border-color: #d8a8d8;
+  border-color: #d8a8d8;
 }
 
 .about-flair-collapsible summary {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: #bbb;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.3s ease;
-    user-select: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #bbb;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+  user-select: none;
 }
 
 .about-flair-collapsible summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 .about-flair-collapsible summary::before {
-    content: "▸";
-    display: inline-block;
-    font-size: 0.75rem;
-    transition: transform 0.25s ease;
+  content: "▸";
+  display: inline-block;
+  font-size: 0.75rem;
+  transition: transform 0.25s ease;
 }
 
 .about-flair-collapsible[open] summary::before {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .about-flair-collapsible summary:hover {
-    color: #d8a8d8;
+  color: #d8a8d8;
 }
 
 .about-flair-content {
-    padding: 0 1rem;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition:
-        max-height 0.4s ease,
-        opacity 0.3s ease,
-        padding 0.4s ease;
+  padding: 0 1rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
 }
 
 .about-flair-collapsible[open] .about-flair-content {
-    max-height: 800px;
-    opacity: 1;
-    padding: 0 1rem 1rem;
+  max-height: 800px;
+  opacity: 1;
+  padding: 0 1rem 1rem;
 }
 
 /* ==============================
@@ -350,84 +347,84 @@
 
 /* ---- Tablet ---- */
 @media screen and (max-width: 768px) {
-    .about-layout {
-        padding: 0 1.5rem 2rem;
-    }
+  .about-layout {
+    padding: 0 1.5rem 2rem;
+  }
 
-    .about-avatar {
-        width: 120px;
-        margin-right: 1.5rem;
-    }
+  .about-avatar {
+    width: 120px;
+    margin-right: 1.5rem;
+  }
 
-    .about-tools-grid {
-        justify-content: center;
-    }
+  .about-tools-grid {
+    justify-content: center;
+  }
 
-    .about-tool {
-        width: 80px;
-        padding: 0.6rem;
-        gap: 0.3rem;
-    }
+  .about-tool {
+    width: 80px;
+    padding: 0.6rem;
+    gap: 0.3rem;
+  }
 
-    .about-tool-icon {
-        width: 30px;
-        height: 30px;
-    }
+  .about-tool-icon {
+    width: 30px;
+    height: 30px;
+  }
 
-    .about-tool-name {
-        font-size: 0.65rem;
-    }
+  .about-tool-name {
+    font-size: 0.65rem;
+  }
 
-    .about-flair-row {
-        justify-content: center;
-    }
+  .about-flair-row {
+    justify-content: center;
+  }
 
-    .about-timeline-item {
-        padding: 0.6rem 0.75rem;
-    }
+  .about-timeline-item {
+    padding: 0.6rem 0.75rem;
+  }
 }
 
 /* ---- Mobile ---- */
 @media screen and (max-width: 480px) {
-    .about-layout {
-        padding: 0 1rem 1.5rem;
-    }
+  .about-layout {
+    padding: 0 1rem 1.5rem;
+  }
 
-    .about-section {
-        margin-bottom: 2rem;
-    }
+  .about-section {
+    margin-bottom: 2rem;
+  }
 
-    .about-avatar {
-        width: 110px;
-        margin-right: 1rem;
-    }
+  .about-avatar {
+    width: 110px;
+    margin-right: 1rem;
+  }
 
-    .about-bio-text p {
-        font-size: 0.9rem;
-    }
+  .about-bio-text p {
+    font-size: 0.9rem;
+  }
 
-    .about-tool {
-        width: 68px;
-        padding: 0.5rem;
-        gap: 0.25rem;
-    }
+  .about-tool {
+    width: 68px;
+    padding: 0.5rem;
+    gap: 0.25rem;
+  }
 
-    .about-tool-icon {
-        width: 24px;
-        height: 24px;
-    }
+  .about-tool-icon {
+    width: 24px;
+    height: 24px;
+  }
 
-    .about-tool-name {
-        font-size: 0.6rem;
-    }
+  .about-tool-name {
+    font-size: 0.6rem;
+  }
 
-    .about-flair-row.stamps img {
-        width: auto;
-        height: auto;
-    }
+  .about-flair-row.stamps img {
+    width: auto;
+    height: auto;
+  }
 
-    .about-flair-row.stamps .about-flair-placeholder {
-        width: 60px;
-        height: 60px;
-    }
+  .about-flair-row.stamps .about-flair-placeholder {
+    width: 60px;
+    height: 60px;
+  }
 }
