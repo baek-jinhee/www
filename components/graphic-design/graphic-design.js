@@ -14,15 +14,15 @@ const gdProjects = [
       "I design on-brand promotional graphics for University at Buffalo Recreation to support student engagement and campus wellness initiatives.",
     images: [
       {
-        src: "../assets/images/graphic_design/unplug&play.png",
+        src: "../assets/images/graphic_design/unplug&play.avif",
         alt: "Project 1 - Image 1",
       },
       {
-        src: "../assets/images/graphic_design/intramurals_flyer.png",
+        src: "../assets/images/graphic_design/intramurals_flyer.avif",
         alt: "Project 1 - Image 2",
       },
       {
-        src: "../assets/images/graphic_design/giveaway.png",
+        src: "../assets/images/graphic_design/giveaway.avif",
         alt: "Project 1 - Image 2",
       },
     ],
@@ -33,7 +33,7 @@ const gdProjects = [
     date: "Date 20xx",
     description: "WIP WIP WIP",
     images: [
-      { src: "../assets/images/image3.jpg", alt: "Project 2 - Image 1" },
+      { src: "../assets/images/image3.avif", alt: "Project 2 - Image 1" },
     ],
   },
   {
@@ -42,9 +42,9 @@ const gdProjects = [
     date: "Date 20xx",
     description: "WIP WIP WIP",
     images: [
-      { src: "../assets/images/image4.jpg", alt: "Project 3 - Image 1" },
-      { src: "../assets/images/image5.jpg", alt: "Project 3 - Image 2" },
-      { src: "../assets/images/image6.jpg", alt: "Project 3 - Image 3" },
+      { src: "../assets/images/image4.avif", alt: "Project 3 - Image 1" },
+      { src: "../assets/images/image5.avif", alt: "Project 3 - Image 2" },
+      { src: "../assets/images/image6.avif", alt: "Project 3 - Image 3" },
     ],
   },
 ];

@@ -7,44 +7,44 @@
 const galleries = {
   2026: [
     {
-      src: "../assets/images/illustration/mane6.jpg",
+      src: "../assets/images/illustration/mane6.avif",
       alt: "First image",
       w: 2256,
       h: 1504,
     },
     {
-      src: "../assets/images/illustration/celine.png",
+      src: "../assets/images/illustration/celine.avif",
       alt: "Second image",
       w: 1504,
       h: 1840,
     },
     {
-      src: "../assets/images/illustration/pony2.png",
+      src: "../assets/images/illustration/pony2.avif",
       alt: "Third image",
       w: 1688,
       h: 1592,
     },
     {
-      src: "../assets/images/illustration/wish.png",
+      src: "../assets/images/illustration/wish.avif",
       alt: "Fourth image",
       w: 662,
       h: 1466,
     },
     {
-      src: "../assets/images/illustration/wish_ref.png",
+      src: "../assets/images/illustration/wish_ref.avif",
       alt: "Fifth image",
       w: 1504,
       h: 1504,
     },
 
     {
-      src: "../assets/images/illustration/wish2.png",
+      src: "../assets/images/illustration/wish2.avif",
       alt: "Sixth image",
       w: 3416,
       h: 2744,
     },
     {
-      src: "../assets/images/illustration/pony1.png",
+      src: "../assets/images/illustration/pony1.avif",
       alt: "7th image",
       w: 300,
       h: 400,
@@ -52,7 +52,7 @@ const galleries = {
   ],
   2025: [
     // Add your 2025 images here with the same format:
-    // { src: "../assets/images/example.jpg", alt: "Description", w: 1200, h: 800 },
+    // { src: "../assets/images/example.avif", alt: "Description", w: 1200, h: 800 },
   ],
 };
 
