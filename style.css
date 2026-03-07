@@ -158,6 +158,11 @@ body:not(:has(.hero)) .navbar {
   position: relative;
   overflow: hidden;
   background-color: #e8f5ff;
+  visibility: hidden;
+}
+
+.hero.loaded {
+  visibility: visible;
 }
 
 /* ---- Landing page entrance animation (use same as About page) ----

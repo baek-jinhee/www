@@ -203,8 +203,7 @@ function addImageToColumns(img) {
   const col = roundRobinIndex % columnHeights.length;
   roundRobinIndex++;
 
-  columnStrings[col] +=
-    '<img src="' +
+  columnStrings[col] += '<img src="' +
     img.src +
     '" alt="' +
     img.alt +
@@ -249,8 +248,7 @@ function renderArchive(gallery) {
   let html = "";
 
   // Blurb
-  html +=
-    '<div class="archive-blurb">' +
+  html += '<div class="archive-blurb">' +
     "<p>This is my archived art from 2016\u20132024.</p>" +
     "</div>";
 
@@ -265,8 +263,7 @@ function renderArchive(gallery) {
     const images = archive[year] || [];
     const hasImages = images.length > 0;
 
-    html +=
-      '<details class="archive-year-section">' +
+    html += '<details class="archive-year-section">' +
       '<summary class="archive-year-heading">' +
       year +
       " (" +
@@ -288,8 +285,8 @@ function renderArchive(gallery) {
       }
       html += "</div>";
     } else {
-      html +=
-        '<div class="archive-empty">' + "<p>No images yet.</p>" + "</div>";
+      html += '<div class="archive-empty">' + "<p>No images yet.</p>" +
+        "</div>";
     }
 
     html += "</div></details>";
