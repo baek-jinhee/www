@@ -1,210 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <title>Jinhee Baek</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="components/music-player/music-player.css"
-    />
-    <style>
-      @keyframes chibi-bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-8px);
-        }
-      }
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>Jinhee Baek</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="components/music-player/music-player.css"
+        />
+        <style>
+            @keyframes chibi-bounce {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-8px);
+                }
+            }
 
-      .hero-chibi {
-        animation: chibi-bounce 2s ease-in-out infinite;
-      }
+            .hero-chibi {
+                animation: chibi-bounce 2s ease-in-out infinite;
+            }
 
-      @media screen and (max-width: 768px) {
-        .hero-chibi {
-          display: none !important;
-        }
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script
-      defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="4499a817-1c30-4e0c-a1c2-dc2eb4d58821"
-    ></script>
-  </head>
+            @media screen and (max-width: 768px) {
+                .hero-chibi {
+                    display: none !important;
+                }
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="4499a817-1c30-4e0c-a1c2-dc2eb4d58821"
+        ></script>
+    </head>
 
-  <body>
-    <header class="hero">
-      <div class="hero-content">
-        <div class="hero-images">
-          <!-- Image 1 + Intro card -->
-          <div class="hero-item hero-card">
-            <div class="hero-image1">
-              <img
-                src="assets/images/homePageImage1.webp"
-                alt="Jinhee's Art 1"
-              />
+    <body>
+        <header class="hero">
+            <div class="hero-content">
+                <div class="hero-images">
+                    <!-- Image 1 + Intro card -->
+                    <div class="hero-item hero-card">
+                        <div class="hero-image1">
+                            <img
+                                src="assets/images/homePageImage1.webp"
+                                alt="Jinhee's Art 1"
+                            />
+                        </div>
+                        <div class="hero-intro">
+                            <div class="intro-text">
+                                <p class="intro-line">
+                                    I'm an artist and designer who loves all
+                                    things pastel and cute! Thanks for checking
+                                    out my page &lt;3
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div
+                        class="hero-item hero-image2"
+                        style="position: relative"
+                    >
+                        <img
+                            src="assets/images/illustration/wish.avif"
+                            alt="Jinhee's Art 2"
+                        />
+                        <img
+                            src="assets/images/illustration/chibi_wish.avif"
+                            alt="Chibi character"
+                            class="hero-chibi"
+                            style="
+                                position: absolute;
+                                bottom: -5%;
+                                right: -20%;
+                                width: 55%;
+                                height: auto;
+                                pointer-events: none;
+                            "
+                        />
+                    </div>
+
+                    <!-- Social icons -->
+                    <div class="hero-item hero-socials">
+                        <div class="social-icons">
+                            <a href="" class="social-icon" aria-label="Email">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#828282"
+                                    stroke-width="2"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="4"
+                                        width="20"
+                                        height="16"
+                                        rx="2"
+                                    ></rect>
+                                    <path
+                                        d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://github.com/baek-jinhee/"
+                                class="social-icon"
+                                aria-label="GitHub"
+                            >
+                                <svg viewBox="0 0 24 24" fill="#828282">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://discord.com/users/323843704215568384"
+                                class="social-icon"
+                                aria-label="Discord"
+                            >
+                                <svg viewBox="0 0 127.14 96.36" fill="#828282">
+                                    <path
+                                        d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a77.15,77.15,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.22,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0A105.48,105.48,0,0,0,107.7,8.07ZM42.45,65.69C36.66,65.69,31.78,60.55,31.78,54s4.88-11.72,10.67-11.72c5.81,0,10.74,5.27,10.67,11.72S48.24,65.69,42.45,65.69Zm42.24,0C78.9,65.69,74,60.55,74,54s4.88-11.72,10.67-11.72c5.81,0,10.74,5.27,10.67,11.72S90.48,65.69,84.69,65.69Z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://www.instagram.com/jeiblossom/"
+                                class="social-icon"
+                                aria-label="Instagram"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#828282"
+                                    stroke-width="2"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="2"
+                                        width="20"
+                                        height="20"
+                                        rx="5"
+                                        ry="5"
+                                    ></rect>
+                                    <path
+                                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                                    ></path>
+                                    <circle cx="17.5" cy="6.5" r="1.5"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="hero-intro">
-              <div class="intro-text">
-                <p class="intro-line">
-                  I'm an artist and designer who loves all things pastel and
-                  cute! Thanks for checking out my page &lt;3
-                </p>
-              </div>
-            </div>
-          </div>
+        </header>
 
-          <!-- Image 2 -->
-          <div
-            class="hero-item hero-image2"
-            style="position: relative"
-          >
-            <img
-              src="assets/images/illustration/wish.avif"
-              alt="Jinhee's Art 2"
-            />
-            <img
-              src="assets/images/illustration/chibi_wish.avif"
-              alt="Chibi character"
-              class="hero-chibi"
-              style="position: absolute; bottom: -5%; right: -20%; width: 55%; height: auto; pointer-events: none"
-            />
-          </div>
+        <footer class="copyright">
+            &copy; 2026 Jin Hee Baek / All Rights Reserved.
+        </footer>
 
-          <!-- Social icons -->
-          <div class="hero-item hero-socials">
-            <div class="social-icons">
-              <a href="" class="social-icon" aria-label="Email">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#828282"
-                  stroke-width="2"
-                >
-                  <rect
-                    x="2"
-                    y="4"
-                    width="20"
-                    height="16"
-                    rx="2"
-                  >
-                  </rect>
-                  <path
-                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                  >
-                  </path>
-                </svg>
-              </a>
-              <a
-                href="https://github.com/baek-jinhee/"
-                class="social-icon"
-                aria-label="GitHub"
-              >
-                <svg viewBox="0 0 24 24" fill="#828282">
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                  >
-                  </path>
-                </svg>
-              </a>
-              <a
-                href="https://discord.com/users/323843704215568384"
-                class="social-icon"
-                aria-label="Discord"
-              >
-                <svg viewBox="0 0 127.14 96.36" fill="#828282">
-                  <path
-                    d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a77.15,77.15,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.22,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0A105.48,105.48,0,0,0,107.7,8.07ZM42.45,65.69C36.66,65.69,31.78,60.55,31.78,54s4.88-11.72,10.67-11.72c5.81,0,10.74,5.27,10.67,11.72S48.24,65.69,42.45,65.69Zm42.24,0C78.9,65.69,74,60.55,74,54s4.88-11.72,10.67-11.72c5.81,0,10.74,5.27,10.67,11.72S90.48,65.69,84.69,65.69Z"
-                  >
-                  </path>
-                </svg>
-              </a>
-              <a
-                href="https://www.instagram.com/jeiblossom/"
-                class="social-icon"
-                aria-label="Instagram"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#828282"
-                  stroke-width="2"
-                >
-                  <rect
-                    x="2"
-                    y="2"
-                    width="20"
-                    height="20"
-                    rx="5"
-                    ry="5"
-                  >
-                  </rect>
-                  <path
-                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                  >
-                  </path>
-                  <circle cx="17.5" cy="6.5" r="1.5"></circle>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+        <!-- Music Player -->
+        <div id="music-player-widget"></div>
 
-    <footer class="copyright">
-      &copy; 2026 Jin Hee Baek / All Rights Reserved.
-    </footer>
+        <script src="components/navbar/navbar.js"></script>
+        <script src="components/music-player/music-player.js"></script>
+        <script>
+            const playlist = [
+                {
+                    title: "Love Cherry Motion",
+                    artist: "Choerry",
+                    url: "assets/music/lovechoerrymotion.opus",
+                    albumArt: "assets/music/lcm.avif",
+                },
+            ];
+            const player = new MusicPlayer();
+            player.setSongs(playlist);
+        </script>
 
-    <!-- Music Player -->
-    <div id="music-player-widget"></div>
+        <!-- Match hero-image2 height to hero-card on desktop -->
+        <script>
+            function matchRightImageHeight() {
+                const card = document.querySelector(".hero-card");
+                const image2 = document.querySelector(".hero-image2");
+                if (!card || !image2) return;
 
-    <script src="components/navbar/navbar.js"></script>
-    <script src="components/music-player/music-player.js"></script>
-    <script>
-      const playlist = [
-        {
-          title: "Love Cherry Motion",
-          artist: "Choerry",
-          url: "assets/music/lovechoerrymotion.opus",
-          albumArt: "assets/music/lcm.avif",
-        },
-      ];
-      const player = new MusicPlayer();
-      player.setSongs(playlist);
-    </script>
+                if (window.innerWidth > 768) {
+                    image2.style.height = card.offsetHeight + "px";
+                } else {
+                    image2.style.height = "";
+                }
+            }
 
-    <!-- Match hero-image2 height to hero-card on desktop -->
-    <script>
-      function matchRightImageHeight() {
-        const card = document.querySelector(".hero-card");
-        const image2 = document.querySelector(".hero-image2");
-        if (!card || !image2) return;
+            // Run after all images have loaded so heights are accurate
+            window.addEventListener("load", matchRightImageHeight);
+            window.addEventListener("resize", matchRightImageHeight);
+        </script>
 
-        if (window.innerWidth > 768) {
-          image2.style.height = card.offsetHeight + "px";
-        } else {
-          image2.style.height = "";
-        }
-      }
-
-      // Run after all images have loaded so heights are accurate
-      window.addEventListener("load", matchRightImageHeight);
-      window.addEventListener("resize", matchRightImageHeight);
-    </script>
-
-    <script src="components/sparkle/sparkle.js"></script>
-  </body>
+        <script src="components/sparkle/sparkle.js"></script>
+    </body>
 </html>

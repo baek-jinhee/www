@@ -56,79 +56,331 @@ const galleries = {
   ],
 };
 
+// ---- Archive data (2024–2016) ----
+const archive = {
+  2024: [
+    { src: "../assets/images/illustration/2024/oc12.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc1.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc13.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/wish.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc5.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc6.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc9.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc10.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc11.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc7.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/oc8.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/girl.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2024/smiski.avif", w: 1200, h: 800 },
+  ],
+  2023: [
+    { src: "../assets/images/illustration/2023/oc.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/oc5.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/wish.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/oc8.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/oc9.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/rarity.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2023/twi.avif", w: 1200, h: 800 },
+  ],
+  2022: [
+    { src: "../assets/images/illustration/2022/rei.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/lisa.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/girl.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/dog.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/tsuki.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/celine.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/me.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/zeph.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/belle.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/splat.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2022/anya.avif", w: 1200, h: 800 },
+  ],
+  2021: [
+    { src: "../assets/images/illustration/2021/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/ocs.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/oc5.avif", w: 1200, h: 800 },
+    {
+      src: "../assets/images/illustration/2021/seoryoung.avif",
+      w: 1200,
+      h: 800,
+    },
+    { src: "../assets/images/illustration/2021/oc6.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/oc7.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/twi.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2021/venti.avif", w: 1200, h: 800 },
+  ],
+  2020: [
+    { src: "../assets/images/illustration/2020/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2020/oc1.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2020/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2020/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2020/oc5.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2020/oc6.avif", w: 1200, h: 800 },
+    {
+      src: "../assets/images/illustration/2020/seoryoung.avif",
+      w: 1200,
+      h: 800,
+    },
+    {
+      src: "../assets/images/illustration/2020/seokyoung.avif",
+      w: 1200,
+      h: 800,
+    },
+  ],
+  2019: [
+    { src: "../assets/images/illustration/2019/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/oc5.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/oc6.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/oc7.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/oc1.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2019/owl.avif", w: 1200, h: 800 },
+  ],
+  2018: [
+    { src: "../assets/images/illustration/2018/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc5.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc6.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc7.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc8.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc9.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2018/oc1.avif", w: 1200, h: 800 },
+  ],
+  2017: [
+    { src: "../assets/images/illustration/2017/oc1.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc4.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc5.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc7.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc8.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2017/oc9.avif", w: 1200, h: 800 },
+  ],
+  2016: [
+    { src: "../assets/images/illustration/2016/frisk.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2016/girl.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2016/oc1.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2016/oc2.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2016/oc3.avif", w: 1200, h: 800 },
+    { src: "../assets/images/illustration/2016/oc4.avif", w: 1200, h: 800 },
+  ],
+};
+
 // ---- State ----
 let currentYear = 2026;
+let isArchive = false;
 let columnHeights;
 let columnStrings;
 
 // ---- Column helpers ----
 function getNumColumns() {
-  if (window.innerWidth < 600) return 1;
+  if (window.innerWidth < 480) return 2;
+  if (window.innerWidth < 600) return 2;
   if (window.innerWidth < 1000) return 2;
   if (window.innerWidth < 1200) return 3;
   return 4;
 }
 
-function addImageToColumns(img) {
-  const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
-  const imageHeight = (img.h / img.w) * 100;
+function getArchiveNumColumns() {
+  if (window.innerWidth < 480) return 2;
+  if (window.innerWidth < 600) return 3;
+  if (window.innerWidth < 1000) return 4;
+  if (window.innerWidth < 1200) return 5;
+  return 6;
+}
 
-  columnStrings[shortestColumn] += '<img src="' +
+var roundRobinIndex = 0;
+
+function addImageToColumns(img) {
+  const col = roundRobinIndex % columnHeights.length;
+  roundRobinIndex++;
+
+  columnStrings[col] +=
+    '<img src="' +
     img.src +
     '" alt="' +
     img.alt +
     '" title="' +
     img.alt +
     '" loading="lazy" />';
-
-  columnHeights[shortestColumn] += imageHeight;
 }
 
-function setGallery() {
-  const images = galleries[currentYear] || [];
+function buildMasonryHTML(images) {
   const numCols = getNumColumns();
   columnHeights = new Array(numCols).fill(0);
   columnStrings = new Array(numCols).fill("");
+  roundRobinIndex = 0;
 
   images.forEach(addImageToColumns);
 
-  let galleryHTML = "";
+  let html = "";
   for (let i = 0; i < columnStrings.length; i++) {
-    galleryHTML += "<div>" + columnStrings[i] + "</div>";
+    html += "<div>" + columnStrings[i] + "</div>";
+  }
+  return html;
+}
+
+function setGallery() {
+  const gallery = document.getElementById("gallery");
+  if (!gallery) return;
+
+  if (isArchive) {
+    renderArchive(gallery);
+  } else {
+    const images = galleries[currentYear] || [];
+    gallery.innerHTML = buildMasonryHTML(images);
   }
 
-  const gallery = document.getElementById("gallery");
-  if (gallery) {
-    gallery.innerHTML = galleryHTML;
-    gallery.classList.remove("fade-in");
-    void gallery.offsetWidth;
-    gallery.classList.add("fade-in");
-    attachLightboxListeners();
-  }
+  gallery.classList.remove("fade-in");
+  void gallery.offsetWidth;
+  gallery.classList.add("fade-in");
+  attachLightboxListeners();
+}
+
+function renderArchive(gallery) {
+  let html = "";
+
+  // Blurb
+  html +=
+    '<div class="archive-blurb">' +
+    "<p>This is my archived art from 2016\u20132024.</p>" +
+    "</div>";
+
+  // Render each year newest to oldest
+  const years = Object.keys(archive)
+    .map(Number)
+    .sort(function (a, b) {
+      return b - a;
+    });
+
+  years.forEach(function (year) {
+    const images = archive[year] || [];
+    const hasImages = images.length > 0;
+
+    html +=
+      '<details class="archive-year-section">' +
+      '<summary class="archive-year-heading">' +
+      year +
+      " (" +
+      images.length +
+      ")" +
+      "</summary>" +
+      '<div class="archive-year-content">';
+
+    if (hasImages) {
+      const numCols = getArchiveNumColumns();
+      columnHeights = new Array(numCols).fill(0);
+      columnStrings = new Array(numCols).fill("");
+      roundRobinIndex = 0;
+      images.forEach(addImageToColumns);
+
+      html += '<div class="archive-masonry">';
+      for (let i = 0; i < columnStrings.length; i++) {
+        html += "<div>" + columnStrings[i] + "</div>";
+      }
+      html += "</div>";
+    } else {
+      html +=
+        '<div class="archive-empty">' + "<p>No images yet.</p>" + "</div>";
+    }
+
+    html += "</div></details>";
+  });
+
+  gallery.innerHTML = html;
+
+  // Animate archive dropdowns and attach lightbox listeners
+  gallery.querySelectorAll(".archive-year-section").forEach(function (details) {
+    const summary = details.querySelector("summary");
+    const content = details.querySelector(".archive-year-content");
+
+    summary.addEventListener("click", function (e) {
+      if (details.open) {
+        // Closing: animate then remove open
+        e.preventDefault();
+        content.style.maxHeight = "0";
+        content.style.opacity = "0";
+        content.style.paddingBottom = "0";
+        content.addEventListener("transitionend", function handler() {
+          content.removeEventListener("transitionend", handler);
+          details.removeAttribute("open");
+        });
+      } else {
+        // Opening: clear inline styles so CSS [open] rules take over
+        content.style.removeProperty("max-height");
+        content.style.removeProperty("opacity");
+        content.style.removeProperty("padding-bottom");
+        // Attach lightbox after opening
+        requestAnimationFrame(function () {
+          attachLightboxListeners();
+        });
+      }
+    });
+  });
 }
 
 // ---- Year tab switching ----
 function switchYear(year) {
-  if (year === currentYear) return;
-  currentYear = year;
+  if (year === "archive") {
+    if (isArchive) return;
+    isArchive = true;
+    currentYear = null;
+  } else {
+    year = parseInt(year);
+    if (!isArchive && year === currentYear) return;
+    isArchive = false;
+    currentYear = year;
+  }
 
   // Update active tab button
   document.querySelectorAll(".year-tab").forEach(function (btn) {
-    btn.classList.toggle("active", parseInt(btn.dataset.year) === year);
+    if (isArchive) {
+      btn.classList.toggle("active", btn.dataset.year === "archive");
+    } else {
+      btn.classList.toggle(
+        "active",
+        parseInt(btn.dataset.year) === currentYear,
+      );
+    }
   });
 
+  // Update gallery class for styling
+  const gallery = document.getElementById("gallery");
+  if (gallery) {
+    gallery.classList.toggle("archive-view", isArchive);
+  }
+
   // Re-render gallery
-  const images = galleries[currentYear] || [];
-  preloadImages(images).then(function () {
+  if (isArchive) {
+    const allImages = [];
+    Object.values(archive).forEach(function (imgs) {
+      allImages.push.apply(allImages, imgs);
+    });
+    preloadImages(allImages).then(function () {
+      setGallery();
+    });
     setGallery();
-  });
-  setGallery();
+  } else {
+    const images = galleries[currentYear] || [];
+    preloadImages(images).then(function () {
+      setGallery();
+    });
+    setGallery();
+  }
 }
 
 function setupYearTabs() {
   document.querySelectorAll(".year-tab").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      switchYear(parseInt(btn.dataset.year));
+      switchYear(btn.dataset.year);
     });
   });
 }
@@ -167,7 +419,9 @@ function openLightbox(src, alt) {
 }
 
 function attachLightboxListeners() {
-  const galleryImages = document.querySelectorAll("#gallery img");
+  const galleryImages = document.querySelectorAll(
+    "#gallery img, .archive-masonry img",
+  );
   galleryImages.forEach(function (img) {
     img.addEventListener("click", function () {
       openLightbox(img.src, img.alt);
