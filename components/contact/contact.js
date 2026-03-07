@@ -17,6 +17,10 @@ function initContactForm() {
 
   if (!form || !sendBtn || !status) return;
 
+  if (typeof emailjs !== "undefined") {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 

@@ -1,5 +1,5 @@
-var colour = "oklch(0.9353 0.1011 315.53)";
-var sparkles = 120;
+let colour = "oklch(0.9353 0.1011 315.53)";
+const sparkles = 120;
 
 /****************************
  *  Tinkerbell Magic Sparkle *
@@ -7,53 +7,54 @@ var sparkles = 120;
  *  http://www.mf2fm.com/rv  *
  * DON'T EDIT BELOW THIS BOX *
  ****************************/
-var x = (ox = 400);
-var y = (oy = 300);
-var swide = 800;
-var shigh = 600;
-var sleft = (sdown = 0);
-var tiny = new Array();
-var star = new Array();
-var starv = new Array();
-var starx = new Array();
-var stary = new Array();
-var tinyx = new Array();
-var tinyy = new Array();
-var tinyv = new Array();
+let ox = 400;
+let x = ox;
+let oy = 300;
+let y = oy;
+let shigh = 600;
+let sleft = 0;
+let sdown = 0;
+const tiny = [];
+const star = [];
+const starv = [];
+const starx = [];
+const stary = [];
+const tinyx = [];
+const tinyy = [];
+const tinyv = [];
 
-var isHome = false;
+let isHome = false;
 
 window.addEventListener("load", function () {
   if (document.querySelector(".hero")) {
     colour = "white";
     isHome = true;
   }
-  var tinySize = isHome ? 5 : 3;
-  var starSize = isHome ? 8 : 5;
-  var barW = isHome ? 2 : 1;
-  var barOff = isHome ? 3 : 2;
+  const tinySize = isHome ? 5 : 3;
+  const starSize = isHome ? 8 : 5;
+  const barW = isHome ? 2 : 1;
+  const barOff = isHome ? 3 : 2;
   if (document.getElementById) {
-    var i, rats, rlef, rdow;
-    for (var i = 0; i < sparkles; i++) {
-      var rats = createDiv(tinySize, tinySize);
-      rats.style.visibility = "hidden";
-      rats.style.pointerEvents = "none";
-      document.body.appendChild((tiny[i] = rats));
+    for (let i = 0; i < sparkles; i++) {
+      const tinyParticle = createDiv(tinySize, tinySize);
+      tinyParticle.style.visibility = "hidden";
+      tinyParticle.style.pointerEvents = "none";
+      document.body.appendChild(tiny[i] = tinyParticle);
       starv[i] = 0;
       tinyv[i] = 0;
-      var rats = createDiv(starSize, starSize);
-      rats.style.backgroundColor = "transparent";
-      rats.style.visibility = "hidden";
-      rats.style.pointerEvents = "none";
-      var rlef = createDiv(barW, starSize);
-      var rdow = createDiv(starSize, barW);
-      rats.appendChild(rlef);
-      rats.appendChild(rdow);
-      rlef.style.top = barOff + "px";
-      rlef.style.left = "0px";
-      rdow.style.top = "0px";
-      rdow.style.left = barOff + "px";
-      document.body.appendChild((star[i] = rats));
+      const starParticle = createDiv(starSize, starSize);
+      starParticle.style.backgroundColor = "transparent";
+      starParticle.style.visibility = "hidden";
+      starParticle.style.pointerEvents = "none";
+      const leftBar = createDiv(barW, starSize);
+      const downBar = createDiv(starSize, barW);
+      starParticle.appendChild(leftBar);
+      starParticle.appendChild(downBar);
+      leftBar.style.top = barOff + "px";
+      leftBar.style.left = "0px";
+      downBar.style.top = "0px";
+      downBar.style.left = barOff + "px";
+      document.body.appendChild(star[i] = starParticle);
     }
     set_width();
     sparkle();
@@ -61,26 +62,26 @@ window.addEventListener("load", function () {
 });
 
 function sparkle() {
-  var c;
   if (x != ox || y != oy) {
     ox = x;
     oy = y;
-    for (c = 0; c < sparkles; c++)
+    for (let c = 0; c < sparkles; c++) {
       if (!starv[c]) {
         star[c].style.left = (starx[c] = x) + "px";
         star[c].style.top = (stary[c] = y) + "px";
-        var ss = isHome ? 8 : 5;
+        const ss = isHome ? 8 : 5;
         star[c].style.clip = "rect(0px, " + ss + "px, " + ss + "px, 0px)";
         star[c].style.visibility = "visible";
         starv[c] = 50;
         break;
       }
+    }
   }
-  for (c = 0; c < sparkles; c++) {
+  for (let c = 0; c < sparkles; c++) {
     if (starv[c]) update_star(c);
     if (tinyv[c]) update_tiny(c);
   }
-  setTimeout("sparkle()", 40);
+  setTimeout(sparkle, 40);
 }
 
 function update_star(i) {
@@ -132,12 +133,12 @@ function update_tiny(i) {
   } else tiny[i].style.visibility = "hidden";
 }
 
-document.onmousemove = mouse;
 function mouse(e) {
   set_scroll();
-  y = e ? e.pageY : event.y + sdown;
-  x = e ? e.pageX : event.x + sleft;
+  y = e ? e.pageY : window.event.y + sdown;
+  x = e ? e.pageX : window.event.x + sleft;
 }
+document.onmousemove = mouse;
 
 function set_scroll() {
   if (typeof self.pageYOffset == "number") {
@@ -173,7 +174,7 @@ function set_width() {
 }
 
 function createDiv(height, width) {
-  var div = document.createElement("div");
+  const div = document.createElement("div");
   div.style.position = "absolute";
   div.style.height = height + "px";
   div.style.width = width + "px";

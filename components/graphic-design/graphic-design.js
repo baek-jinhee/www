@@ -14,15 +14,15 @@ const gdProjects = [
       "I design on-brand promotional graphics for University at Buffalo Recreation to support student engagement and campus wellness initiatives.",
     images: [
       {
-        src: "../assets/images/graphic_design/unplug&play.png",
+        src: "../assets/images/graphic_design/unplug&play.avif",
         alt: "Project 1 - Image 1",
       },
       {
-        src: "../assets/images/graphic_design/intramurals_flyer.png",
+        src: "../assets/images/graphic_design/intramurals_flyer.avif",
         alt: "Project 1 - Image 2",
       },
       {
-        src: "../assets/images/graphic_design/giveaway.png",
+        src: "../assets/images/graphic_design/giveaway.avif",
         alt: "Project 1 - Image 2",
       },
     ],
@@ -33,7 +33,7 @@ const gdProjects = [
     date: "Date 20xx",
     description: "WIP WIP WIP",
     images: [
-      { src: "../assets/images/image3.jpg", alt: "Project 2 - Image 1" },
+      { src: "../assets/images/image3.avif", alt: "Project 2 - Image 1" },
     ],
   },
   {
@@ -42,9 +42,9 @@ const gdProjects = [
     date: "Date 20xx",
     description: "WIP WIP WIP",
     images: [
-      { src: "../assets/images/image4.jpg", alt: "Project 3 - Image 1" },
-      { src: "../assets/images/image5.jpg", alt: "Project 3 - Image 2" },
-      { src: "../assets/images/image6.jpg", alt: "Project 3 - Image 3" },
+      { src: "../assets/images/image4.avif", alt: "Project 3 - Image 1" },
+      { src: "../assets/images/image5.avif", alt: "Project 3 - Image 2" },
+      { src: "../assets/images/image6.avif", alt: "Project 3 - Image 3" },
     ],
   },
 ];
@@ -89,8 +89,7 @@ function renderProjectDetail(project) {
   }
 
   // Build detail header
-  let html =
-    '<div class="gd-detail-header">' +
+  let html = '<div class="gd-detail-header">' +
     '<h2 class="gd-detail-title">' +
     escapeHtml(project.title) +
     "</h2>" +
@@ -106,8 +105,7 @@ function renderProjectDetail(project) {
   if (project.images && project.images.length > 0) {
     html += '<div class="gd-image-grid">';
     project.images.forEach(function (img) {
-      html +=
-        '<img src="' +
+      html += '<img src="' +
         escapeHtml(img.src) +
         '" alt="' +
         escapeHtml(img.alt) +
@@ -140,7 +138,7 @@ function selectProject(projectId) {
   });
 
   // Find project data
-  var project = gdProjects.find(function (p) {
+  const project = gdProjects.find(function (p) {
     return p.id === projectId;
   });
 
@@ -151,7 +149,7 @@ function selectProject(projectId) {
 function createGdLightbox() {
   if (document.querySelector(".gd-lightbox-overlay")) return;
 
-  var overlay = document.createElement("div");
+  const overlay = document.createElement("div");
   overlay.classList.add("gd-lightbox-overlay");
   overlay.innerHTML = '<img src="" alt="Lightbox image" />';
 
@@ -171,17 +169,17 @@ function createGdLightbox() {
 }
 
 function openGdLightbox(src, alt) {
-  var overlay = document.querySelector(".gd-lightbox-overlay");
+  const overlay = document.querySelector(".gd-lightbox-overlay");
   if (!overlay) return;
 
-  var img = overlay.querySelector("img");
+  const img = overlay.querySelector("img");
   img.src = src;
   img.alt = alt || "";
   overlay.classList.add("active");
 }
 
 function attachGdLightboxListeners() {
-  var images = document.querySelectorAll(".gd-image-grid img");
+  const images = document.querySelectorAll(".gd-image-grid img");
   images.forEach(function (img) {
     img.addEventListener("click", function () {
       openGdLightbox(img.src, img.alt);
@@ -191,7 +189,7 @@ function attachGdLightboxListeners() {
 
 // ---- Utility ----
 function escapeHtml(str) {
-  var div = document.createElement("div");
+  const div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }

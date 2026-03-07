@@ -1,0 +1,11 @@
+{
+  "lint": {
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": [
+        "no-window",
+        "no-window-prefix"
+      ]
+    }
+  }
+}
