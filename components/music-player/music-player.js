@@ -1,3 +1,4 @@
+// deno-lint-ignore no-unused-vars
 class MusicPlayer {
   constructor(containerId = "music-player-widget") {
     this.songs = [];
@@ -206,22 +207,6 @@ class MusicPlayer {
     this.audio.currentTime = seekTime;
   }
 
-  setVolume(value) {
-    this.volume = value;
-    this.audio.volume = value / 100;
-    this.volumePercent.textContent = value + "%";
-  }
-
-  toggleMute() {
-    if (this.audio.volume > 0) {
-      this.audio.volume = 0;
-      this.volumeBtn.style.opacity = "0.5";
-    } else {
-      this.audio.volume = this.volume / 100;
-      this.volumeBtn.style.opacity = "1";
-    }
-  }
-
   updateProgress() {
     const percent = (this.audio.currentTime / this.audio.duration) * 100;
     this.progressBar.value = percent || 0;
@@ -250,9 +235,4 @@ class MusicPlayer {
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   }
-}
-
-// Export for use in other modules
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = MusicPlayer;
 }

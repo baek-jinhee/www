@@ -12,7 +12,6 @@ let x = ox;
 let oy = 300;
 let y = oy;
 let shigh = 600;
-let sleft = 0;
 let sdown = 0;
 const tiny = [];
 const star = [];
@@ -39,7 +38,8 @@ window.addEventListener("load", function () {
       const tinyParticle = createDiv(tinySize, tinySize);
       tinyParticle.style.visibility = "hidden";
       tinyParticle.style.pointerEvents = "none";
-      document.body.appendChild(tiny[i] = tinyParticle);
+      tiny[i] = tinyParticle;
+      document.body.appendChild(tinyParticle);
       starv[i] = 0;
       tinyv[i] = 0;
       const starParticle = createDiv(starSize, starSize);
@@ -54,7 +54,8 @@ window.addEventListener("load", function () {
       leftBar.style.left = "0px";
       downBar.style.top = "0px";
       downBar.style.left = barOff + "px";
-      document.body.appendChild(star[i] = starParticle);
+      star[i] = starParticle;
+      document.body.appendChild(starParticle);
     }
     set_width();
     sparkle();
@@ -67,8 +68,10 @@ function sparkle() {
     oy = y;
     for (let c = 0; c < sparkles; c++) {
       if (!starv[c]) {
-        star[c].style.left = (starx[c] = x) + "px";
-        star[c].style.top = (stary[c] = y) + "px";
+        starx[c] = x;
+        stary[c] = y;
+        star[c].style.left = x + "px";
+        star[c].style.top = y + "px";
         const ss = isHome ? 8 : 5;
         star[c].style.clip = "rect(0px, " + ss + "px, " + ss + "px, 0px)";
         star[c].style.visibility = "visible";
@@ -105,8 +108,10 @@ function update_star(i) {
     }
   } else {
     tinyv[i] = 50;
-    tiny[i].style.top = (tinyy[i] = stary[i]) + "px";
-    tiny[i].style.left = (tinyx[i] = starx[i]) + "px";
+    tinyy[i] = stary[i];
+    tinyx[i] = starx[i];
+    tiny[i].style.top = tinyy[i] + "px";
+    tiny[i].style.left = tinyx[i] + "px";
     tiny[i].style.width = (isHome ? 3 : 2) + "px";
     tiny[i].style.height = (isHome ? 3 : 2) + "px";
     star[i].style.visibility = "hidden";
@@ -130,45 +135,40 @@ function update_tiny(i) {
       tinyv[i] = 0;
       return;
     }
-  } else tiny[i].style.visibility = "hidden";
+  } else {
+    tiny[i].style.visibility = "hidden";
+  }
 }
 
 function mouse(e) {
   set_scroll();
-  y = e ? e.pageY : window.event.y + sdown;
-  x = e ? e.pageX : window.event.x + sleft;
+  y = e.pageY;
+  x = e.pageX;
 }
-document.onmousemove = mouse;
+document.addEventListener("mousemove", mouse);
 
 function set_scroll() {
   if (typeof self.pageYOffset == "number") {
     sdown = self.pageYOffset;
-    sleft = self.pageXOffset;
-  } else if (document.body.scrollTop || document.body.scrollLeft) {
+  } else if (document.body.scrollTop) {
     sdown = document.body.scrollTop;
-    sleft = document.body.scrollLeft;
-  } else if (
-    document.documentElement &&
-    (document.documentElement.scrollTop || document.documentElement.scrollLeft)
-  ) {
-    sleft = document.documentElement.scrollLeft;
+  } else if (document.documentElement && document.documentElement.scrollTop) {
     sdown = document.documentElement.scrollTop;
   } else {
     sdown = 0;
-    sleft = 0;
   }
 }
 
 window.addEventListener("resize", set_width);
 function set_width() {
-  if (typeof self.innerWidth == "number") {
-    swide = self.innerWidth;
+  if (typeof self.innerHeight == "number") {
     shigh = self.innerHeight;
-  } else if (document.documentElement && document.documentElement.clientWidth) {
-    swide = document.documentElement.clientWidth;
+  } else if (
+    document.documentElement &&
+    document.documentElement.clientHeight
+  ) {
     shigh = document.documentElement.clientHeight;
-  } else if (document.body.clientWidth) {
-    swide = document.body.clientWidth;
+  } else if (document.body.clientHeight) {
     shigh = document.body.clientHeight;
   }
 }

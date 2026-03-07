@@ -7,16 +7,12 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Contact - Jinhee Baek</title>
+    <meta
+      name="description"
+      content="Get in touch with Jinhee Baek – commissions, questions, or just say hi!"
+    />
     <link rel="stylesheet" href="../style.css" />
-    <link
-      rel="stylesheet"
-      href="../components/music-player/music-player.css"
-    />
     <link rel="stylesheet" href="../components/contact/contact.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
   </head>
   <body>
     <main class="page-content">
@@ -82,8 +78,10 @@
 
         <div class="contact-pagedoll">
           <img
-            src="../assets/images/pagedoll_pafrait.avif"
+            src="../assets/images/misc/pagedoll_pafrait.avif"
             alt="Jinhee's pagedoll"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -98,14 +96,6 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
-    <script type="text/javascript">
-      (function () {
-        // Replace YOUR_PUBLIC_KEY with your actual EmailJS public key
-        if (typeof emailjs !== "undefined") {
-          emailjs.init("0pQYfk1P4ewliqwUd");
-        }
-      })();
-    </script>
 
     <script src="../components/navbar/navbar.js"></script>
     <script src="../components/contact/contact.js"></script>

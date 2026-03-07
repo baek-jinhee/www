@@ -33,21 +33,13 @@
   color: #333;
 }
 
-/* ---- Masonry Gallery ---- */
+/* ---- Masonry Gallery (CSS columns) ---- */
 #gallery {
-  display: flex;
-  gap: 8px;
+  column-count: 4;
+  column-gap: 8px;
   padding: 0 1rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
-}
-
-#gallery > div {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;
 }
 
 #gallery img {
@@ -56,6 +48,8 @@
   display: block;
   border-radius: 6px;
   cursor: pointer;
+  margin-bottom: 8px;
+  break-inside: avoid;
   transition: transform 0.3s ease, filter 0.3s ease;
   object-fit: cover;
 }
@@ -63,6 +57,22 @@
 #gallery img:hover {
   transform: scale(0.97);
   filter: brightness(0.9);
+}
+
+/* ---- Fade-in animation for gallery swap ---- */
+#gallery.fade-in {
+  animation: galleryFadeIn 0.35s ease forwards;
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---- Lightbox Overlay ---- */
@@ -100,25 +110,10 @@
   cursor: default;
 }
 
-/* ---- Fade-in animation for gallery swap ---- */
-#gallery.fade-in {
-  animation: galleryFadeIn 0.35s ease forwards;
-}
-
-@keyframes galleryFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* ---- Archive View ---- */
 #gallery.archive-view {
   display: block;
+  column-count: unset;
   padding: 0 1rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -172,7 +167,7 @@
 }
 
 .archive-year-heading::before {
-  content: "▸";
+  content: "\25B8";
   display: inline-block;
   font-size: 0.75rem;
   transition: transform 0.25s ease;
@@ -200,18 +195,12 @@
   padding-bottom: 0.75rem;
 }
 
+/* ---- Archive Masonry: CSS Grid for even square tiles ---- */
 .archive-masonry {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 8px;
   padding: 0 0.75rem;
-}
-
-.archive-masonry > div {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  flex: 1 1 16%;
 }
 
 .archive-masonry img {
@@ -240,25 +229,40 @@
 }
 
 /* ---- Responsive ---- */
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 601px) and (max-width: 999px) {
   #gallery {
-    gap: 6px;
-    padding: 0 0.5rem 1.5rem;
+    column-count: 2;
   }
 
-  #gallery > div {
-    gap: 6px;
+  .archive-masonry {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1199px) {
+  #gallery {
+    column-count: 3;
+  }
+
+  .archive-masonry {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #gallery {
+    column-count: 2;
+    column-gap: 6px;
+    padding: 0 0.5rem 1.5rem;
   }
 
   #gallery img {
     border-radius: 4px;
+    margin-bottom: 6px;
   }
 
   .archive-masonry {
-    gap: 6px;
-  }
-
-  .archive-masonry > div {
+    grid-template-columns: repeat(3, 1fr);
     gap: 6px;
   }
 
@@ -276,11 +280,17 @@
     filter: none;
   }
 
-  #gallery.fade-in {
-    animation: none;
-  }
-
   .archive-year-section:hover {
     border-color: #f0e6f0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  #gallery {
+    column-count: 2;
+  }
+
+  .archive-masonry {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

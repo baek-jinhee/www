@@ -111,7 +111,7 @@ function renderProjectDetail(project) {
         escapeHtml(img.alt) +
         '" title="' +
         escapeHtml(img.alt) +
-        '" loading="lazy" />';
+        '" loading="lazy" decoding="async" />';
     });
     html += "</div>";
   }
@@ -123,9 +123,6 @@ function renderProjectDetail(project) {
   // Force reflow so the animation restarts
   void main.offsetWidth;
   main.classList.add("fade-in");
-
-  // Attach lightbox listeners to new images
-  attachGdLightboxListeners();
 }
 
 // ---- Select Project ----
@@ -178,12 +175,16 @@ function openGdLightbox(src, alt) {
   overlay.classList.add("active");
 }
 
-function attachGdLightboxListeners() {
-  const images = document.querySelectorAll(".gd-image-grid img");
-  images.forEach(function (img) {
-    img.addEventListener("click", function () {
+// Event delegation: single listener on .gd-main handles all image clicks
+function setupGdLightboxDelegation() {
+  const main = document.querySelector(".gd-main");
+  if (!main) return;
+
+  main.addEventListener("click", function (e) {
+    const img = e.target.closest(".gd-image-grid img");
+    if (img) {
       openGdLightbox(img.src, img.alt);
-    });
+    }
   });
 }
 
@@ -197,6 +198,7 @@ function escapeHtml(str) {
 // ---- Initialise ----
 function initGraphicDesign() {
   createGdLightbox();
+  setupGdLightboxDelegation();
   renderSidebar();
 
   if (activeProjectId) {

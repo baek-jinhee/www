@@ -6,7 +6,13 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
+    <meta
+      name="description"
+      content="Jinhee Baek – artist and designer who loves all things pastel and cute."
+    />
     <title>Jinhee Baek</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -52,8 +58,10 @@
           <div class="hero-item hero-card">
             <div class="hero-image1">
               <img
-                src="assets/images/homePageImage1.webp"
+                src="assets/images/misc/homePageImage1.webp"
                 alt="Jinhee's Art 1"
+                fetchpriority="high"
+                decoding="async"
               />
             </div>
             <div class="hero-intro">
@@ -74,10 +82,14 @@
             <img
               src="assets/images/illustration/wish.avif"
               alt="Jinhee's Art 2"
+              fetchpriority="high"
+              decoding="async"
             />
             <img
               src="assets/images/illustration/chibi_wish.avif"
               alt="Chibi character"
+              loading="lazy"
+              decoding="async"
               class="hero-chibi"
               style="position: absolute; bottom: -5%; right: -20%; width: 55%; height: auto; pointer-events: none"
             />
@@ -200,12 +212,18 @@
         }
       }
 
+      let resizeTimer;
+      function debouncedMatch() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(matchRightImageHeight, 150);
+      }
+
       // Run after all images have loaded so heights are accurate
       window.addEventListener("load", function () {
         matchRightImageHeight();
         document.querySelector(".hero").classList.add("loaded");
       });
-      window.addEventListener("resize", matchRightImageHeight);
+      window.addEventListener("resize", debouncedMatch);
     </script>
 
     <script src="components/sparkle/sparkle.js"></script>
