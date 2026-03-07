@@ -50,8 +50,13 @@
   cursor: pointer;
   margin-bottom: 8px;
   break-inside: avoid;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: opacity 0.4s ease, transform 0.3s ease, filter 0.3s ease;
   object-fit: cover;
+  opacity: 0;
+}
+
+#gallery img.revealed {
+  opacity: 1;
 }
 
 #gallery img:hover {
@@ -209,8 +214,13 @@
   display: block;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: opacity 0.4s ease, transform 0.3s ease, filter 0.3s ease;
   object-fit: cover;
+  opacity: 0;
+}
+
+.archive-masonry img.revealed {
+  opacity: 1;
 }
 
 .archive-masonry img:hover {

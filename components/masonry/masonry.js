@@ -206,6 +206,50 @@ function buildArchiveHTML() {
   return html;
 }
 
+// ---- Sequential image reveal ----
+let revealAbort = null;
+
+function revealImagesSequentially(container, staggerMs) {
+  const delay = staggerMs || 80;
+  const imgs = container.querySelectorAll("img:not(.revealed)");
+  if (!imgs.length) return;
+
+  // Create a new abort token for this run
+  const token = {};
+  revealAbort = token;
+
+  let i = 0;
+
+  function next() {
+    // Stop if a newer reveal has started
+    if (revealAbort !== token) return;
+    if (i >= imgs.length) return;
+
+    const img = imgs[i];
+    i++;
+
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add("revealed");
+      setTimeout(next, delay);
+    } else {
+      img
+        .decode()
+        .then(function () {
+          if (revealAbort !== token) return;
+          img.classList.add("revealed");
+          setTimeout(next, delay);
+        })
+        .catch(function () {
+          if (revealAbort !== token) return;
+          img.classList.add("revealed");
+          setTimeout(next, delay);
+        });
+    }
+  }
+
+  next();
+}
+
 // ---- Render gallery (single render, no preload blocking) ----
 function setGallery() {
   const gallery = document.getElementById("gallery");
@@ -224,6 +268,11 @@ function setGallery() {
   // Force reflow to restart animation
   void gallery.offsetWidth;
   gallery.classList.add("fade-in");
+
+  // Sequentially reveal images (non-archive view)
+  if (!isArchive) {
+    revealImagesSequentially(gallery, 80);
+  }
 }
 
 // ---- Archive accordion animation ----
@@ -250,6 +299,11 @@ function attachArchiveToggles(gallery) {
         content.style.removeProperty("max-height");
         content.style.removeProperty("opacity");
         content.style.removeProperty("padding-bottom");
+        // Sequentially reveal archive images when section opens
+        setTimeout(function () {
+          const masonry = content.querySelector(".archive-masonry");
+          if (masonry) revealImagesSequentially(masonry, 60);
+        }, 50);
       }
     });
   }
