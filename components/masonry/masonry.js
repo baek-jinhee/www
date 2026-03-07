@@ -197,7 +197,7 @@ function getArchiveNumColumns() {
   return 6;
 }
 
-var roundRobinIndex = 0;
+let roundRobinIndex = 0;
 
 function addImageToColumns(img) {
   const col = roundRobinIndex % columnHeights.length;
