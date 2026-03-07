@@ -13,6 +13,16 @@
     <title>Jinhee Baek</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/misc/homePageImage1.webp"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/illustration/wish.avif"
+    />
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -218,11 +228,51 @@
         resizeTimer = setTimeout(matchRightImageHeight, 150);
       }
 
-      // Run after all images have loaded so heights are accurate
-      window.addEventListener("load", function () {
-        matchRightImageHeight();
-        document.querySelector(".hero").classList.add("loaded");
-      });
+      // Wait for critical hero images to decode, then reveal content smoothly
+      (function () {
+        const heroContent = document.querySelector(".hero-content");
+        const heroImgs = document.querySelectorAll(
+          ".hero-image1 img, .hero-image2 > img:first-child",
+        );
+
+        function revealImage(img) {
+          img.classList.add("loaded");
+        }
+
+        // Decode each image and fade it in individually
+        const decodePromises = [];
+        heroImgs.forEach(function (img) {
+          if (img.complete && img.naturalWidth > 0) {
+            revealImage(img);
+          } else {
+            const p = img
+              .decode()
+              .then(function () {
+                revealImage(img);
+              })
+              .catch(function () {
+                revealImage(img);
+              });
+            decodePromises.push(p);
+          }
+        });
+
+        // Once all critical images are decoded, run layout match and start entrance animation
+        Promise.all(decodePromises).then(function () {
+          matchRightImageHeight();
+          if (heroContent) heroContent.classList.add("ready");
+        });
+
+        // Fallback: if images take too long, reveal anyway after 1.5s
+        setTimeout(function () {
+          heroImgs.forEach(function (img) {
+            revealImage(img);
+          });
+          matchRightImageHeight();
+          if (heroContent) heroContent.classList.add("ready");
+        }, 1500);
+      })();
+
       window.addEventListener("resize", debouncedMatch);
     </script>
 

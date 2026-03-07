@@ -158,19 +158,19 @@ body:not(:has(.hero)) .navbar {
   position: relative;
   overflow: hidden;
   background-color: #e8f5ff;
-  visibility: hidden;
 }
 
-.hero.loaded {
-  visibility: visible;
-}
-
-/* ---- Landing page entrance animation (use same as About page) ----
-   Use the exact about page animation: aboutFadeIn 0.5s ease forwards */
+/* ---- Landing page entrance animation ----
+   Starts paused; JS adds .ready once hero images have loaded */
 .hero-content {
   opacity: 0;
   transform: translateY(12px);
-  animation: aboutFadeIn 0.5s ease forwards;
+  animation: aboutFadeIn 0.6s ease forwards;
+  animation-play-state: paused;
+}
+
+.hero-content.ready {
+  animation-play-state: running;
 }
 
 /* Keyframes for aboutFadeIn (copied from about page) */
@@ -252,6 +252,18 @@ body:not(:has(.hero)) .navbar {
 }
 
 /* ---- Hero Image 1 ---- */
+/* Fade individual hero images in as they decode */
+.hero-image1 img,
+.hero-image2 > img {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.hero-image1 img.loaded,
+.hero-image2 > img.loaded {
+  opacity: 1;
+}
+
 .hero-image1 img {
   display: block;
   width: 100%;
