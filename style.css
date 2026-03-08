@@ -254,13 +254,13 @@ body:not(:has(.hero)) .navbar {
 /* ---- Hero Image 1 ---- */
 /* Fade individual hero images in as they decode */
 .hero-image1 img,
-.hero-image2 > img {
+.hero-image2 > img:first-child {
   opacity: 0;
   transition: opacity 0.45s ease;
 }
 
 .hero-image1 img.loaded,
-.hero-image2 > img.loaded {
+.hero-image2 > img:first-child.loaded {
   opacity: 1;
 }
 
