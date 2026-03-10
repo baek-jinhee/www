@@ -290,6 +290,7 @@ body:not(:has(.hero)) .navbar {
   line-height: 1.5;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  text-align: justify;
 }
 
 /* ---- Social Icons ---- */
@@ -748,5 +749,9 @@ body:has(.hero) .copyright {
   .social-icon {
     width: 24px;
     height: 24px;
+  }
+
+  .intro-line {
+    text-align: left;
   }
 }

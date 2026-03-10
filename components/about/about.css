@@ -73,6 +73,7 @@
   color: #666;
   line-height: 1.8;
   margin-bottom: 0.75rem;
+  text-align: justify;
 }
 
 .about-bio-text p:last-child {
@@ -401,6 +402,7 @@
 
   .about-bio-text p {
     font-size: 0.9rem;
+    text-align: justify;
   }
 
   .about-tool {
