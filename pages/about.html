@@ -6,379 +6,389 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>About Me - Jinhee Baek</title>
+    <title>Jinhee Baek (Jeiblossom) | About Me</title>
     <meta
       name="description"
       content="Learn more about Jinhee Baek – artist, designer, and creator of all things pastel and cute."
     />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../components/bg/bg.css" />
     <link rel="stylesheet" href="../components/about/about.css" />
+    <link
+      rel="stylesheet"
+      href="../components/music-player/music-player.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-  <body>
-    <main class="page-content">
-      <div class="page-header">
-        <h1>About Me ₍₍⚞(˶ˆᗜˆ˵)⚟⁾⁾</h1>
-      </div>
+  <body data-page="about">
+    <div id="pjax-root">
+      <main class="page-content">
+        <div class="page-header">
+          <h1>About Me ₍₍⚞(˶ˆᗜˆ˵)⚟⁾⁾</h1>
+        </div>
 
-      <div class="about-layout">
-        <!-- ======== About Me / Bio ======== -->
-        <section class="about-section">
-          <div class="about-section-label">Who I Am</div>
-          <div class="about-bio">
-            <div class="about-avatar">
-              <img
-                src="../assets/images/misc/jinhee.avif"
-                alt="Jinhee"
-                loading="lazy"
-                decoding="async"
-              />
+        <div class="about-layout">
+          <!-- ======== About Me / Bio ======== -->
+          <section class="about-section">
+            <div class="about-section-label">Who I Am</div>
+            <div class="about-bio">
+              <div class="about-avatar">
+                <img
+                  src="../assets/images/misc/jinhee.avif"
+                  alt="Jinhee"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="about-bio-text">
+                <p>
+                  안녕! My name is Jinhee Baek (they/them.) I've been creating
+                  digital art for over half my life. From illustration to UI/UX
+                  and graphic design, I enjoy experimenting with different
+                  mediums and growing my skills along the way.
+                  <br /><span
+                    style="display: block; margin-bottom: 0.4rem"
+                  ></span>
+                  My work is heavily inspired by the internet culture I've grown
+                  up with, pulling from years of online spaces, trends, and
+                  communities. A lot of my works are an amalgamation of those
+                  experiences, blending different aesthetics and pastel colors
+                  into something that feels like me. I hope to create things
+                  people can enjoy and connect with.
+                </p>
+              </div>
             </div>
-            <div class="about-bio-text">
-              <p>
-                안녕! My name is Jinhee Baek (they/them.) I've been creating
-                digital art for over half my life. From illustration to UI/UX
-                and graphic design, I enjoy experimenting with different mediums
-                and growing my skills along the way.
-                <br /><span
-                  style="display: block; margin-bottom: 0.4rem"
-                ></span>
-                My work is heavily inspired by the internet culture I've grown
-                up with, pulling from years of online spaces, trends, and
-                communities. A lot of my works are an amalgamation of those
-                experiences, blending different aesthetics and pastel colors
-                into something that feels like me. I hope to create things
-                people can enjoy and connect with.
-              </p>
-            </div>
-          </div>
 
-          <!-- ======== Web Flair (collapsible) ======== -->
-          <details class="about-flair-collapsible">
-            <summary>Web Flair ♡ click me!</summary>
-            <div class="about-flair-content">
-              <!-- 88x31 Buttons -->
-              <div class="about-flair-group">
-                <div class="about-flair-row buttons-88x31">
-                  <img
-                    src="../assets/web flair/88x31/jinhee.art.webp"
-                    loading="lazy"
-                    decoding="async"
-                    style="cursor: pointer"
-                    onclick="
-                                            document.getElementById(
-                                                'button88x31Modal',
-                                            ).style.display = 'flex'
-                                        "
-                  />
-                  <a
-                    href="https://giannirosato.com/"
-                    target="_blank"
-                    rel="noopener"
-                  >
+            <!-- ======== Web Flair (collapsible) ======== -->
+            <details class="about-flair-collapsible">
+              <summary>Web Flair ♡ click me!</summary>
+              <div class="about-flair-content">
+                <!-- 88x31 Buttons -->
+                <div class="about-flair-group">
+                  <div class="about-flair-row buttons-88x31">
                     <img
-                      src="../assets/web flair/88x31/gb82_88x31.webp"
+                      src="../assets/web flair/88x31/jinhee.art.webp"
+                      loading="lazy"
+                      decoding="async"
+                      style="cursor: pointer"
+                      onclick="
+                                                document.getElementById(
+                                                    'button88x31Modal',
+                                                ).style.display = 'flex'
+                                            "
+                    />
+                    <a
+                      href="https://giannirosato.com/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <img
+                        src="../assets/web flair/88x31/gb82_88x31.webp"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Stamps -->
+                <div class="about-flair-group">
+                  <div class="about-flair-row stamps">
+                    <img
+                      src="../assets/web flair/stamps/nonbinary.png"
                       loading="lazy"
                       decoding="async"
                     />
-                  </a>
+                    <img
+                      src="../assets/web flair/stamps/madoka.gif"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/cinna.gif"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/aj.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/pinkie.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/chickensmoothie.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/orbit.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/juno.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/pusheen.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/donutella.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/sylveon.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/hamtaro.gif"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/drain.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/ascii.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/insane.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/lotus.png"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/bee&amp;p.gif"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/stamps/bee&amp;p2.gif"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <!-- Stamps -->
-              <div class="about-flair-group">
-                <div class="about-flair-row stamps">
-                  <img
-                    src="../assets/web flair/stamps/nonbinary.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/madoka.gif"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/cinna.gif"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/aj.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/pinkie.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/chickensmoothie.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/orbit.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/juno.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/pusheen.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/donutella.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/sylveon.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/hamtaro.gif"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/drain.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/ascii.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/insane.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/lotus.png"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/bee&p.gif"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/stamps/bee&p2.gif"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-
-              <!-- Blinkies -->
-              <div class="about-flair-group">
-                <div class="about-flair-row blinkies">
-                  <!-- Replace with your blinkie images:
+                <!-- Blinkies -->
+                <div class="about-flair-group">
+                  <div class="about-flair-row blinkies">
+                    <!-- Replace with your blinkie images:
                                          <img src="../assets/flair/blinkie1.gif" alt="Blinkie" />
                                     -->
-                  <img
-                    src="../assets/web flair/blinkies/supersonic.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/madoka.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/internet_angel.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/chiikawa.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/digitalartist.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/lps.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/uncool.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/dokidoki.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/tacobell.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/fairy.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/kaomoji.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/gumi.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/2hollis.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/drain.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/loona.webp"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src="../assets/web flair/blinkies/shyshyshy.gif"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                    <img
+                      src="../assets/web flair/blinkies/supersonic.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/madoka.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/internet_angel.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/chiikawa.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/digitalartist.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/lps.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/uncool.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/dokidoki.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/tacobell.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/fairy.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/kaomoji.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/gumi.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/2hollis.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/drain.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/loona.webp"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      src="../assets/web flair/blinkies/shyshyshy.gif"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </details>
-        </section>
+            </details>
+          </section>
 
-        <!-- ======== Tools / Programs ======== -->
-        <section class="about-section">
-          <div class="about-section-label">Tools I Use</div>
-          <div class="about-tools-grid">
-            <!-- Photoshop -->
-            <div class="about-tool">
-              <div class="about-tool-icon">
-                <img
-                  src="../assets/vectors/photoshop-svgrepo-com.svg"
-                  alt="Photoshop"
-                  loading="lazy"
-                  decoding="async"
-                />
+          <!-- ======== Tools / Programs ======== -->
+          <section class="about-section">
+            <div class="about-section-label">Tools I Use</div>
+            <div class="about-tools-grid">
+              <!-- Photoshop -->
+              <div class="about-tool">
+                <div class="about-tool-icon">
+                  <img
+                    src="../assets/vectors/photoshop-svgrepo-com.svg"
+                    alt="Photoshop"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="about-tool-name">Photoshop</span>
               </div>
-              <span class="about-tool-name">Photoshop</span>
-            </div>
 
-            <!-- Illustrator -->
-            <div class="about-tool">
-              <div class="about-tool-icon">
-                <img
-                  src="../assets/vectors/illustrator-svgrepo-com.svg"
-                  alt="Illustrator"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <!-- Illustrator -->
+              <div class="about-tool">
+                <div class="about-tool-icon">
+                  <img
+                    src="../assets/vectors/illustrator-svgrepo-com.svg"
+                    alt="Illustrator"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="about-tool-name">Illustrator</span>
               </div>
-              <span class="about-tool-name">Illustrator</span>
-            </div>
 
-            <!-- Clip Studio Paint -->
-            <div class="about-tool">
-              <div class="about-tool-icon">
-                <img
-                  src="../assets/vectors/icons8-clip-studio-paint(2).svg"
-                  alt="Clip Studio Paint"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <!-- Clip Studio Paint -->
+              <div class="about-tool">
+                <div class="about-tool-icon">
+                  <img
+                    src="../assets/vectors/icons8-clip-studio-paint(2).svg"
+                    alt="Clip Studio Paint"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="about-tool-name">Clip Studio</span>
               </div>
-              <span class="about-tool-name">Clip Studio</span>
-            </div>
 
-            <!-- Figma -->
-            <div class="about-tool">
-              <div class="about-tool-icon">
-                <img
-                  src="../assets/vectors/icons8-figma.svg"
-                  alt="Figma"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <!-- Figma -->
+              <div class="about-tool">
+                <div class="about-tool-icon">
+                  <img
+                    src="../assets/vectors/icons8-figma.svg"
+                    alt="Figma"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="about-tool-name">Figma</span>
               </div>
-              <span class="about-tool-name">Figma</span>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- ======== Education ======== -->
-        <section class="about-section">
-          <div class="about-section-label">Education</div>
-          <div class="about-timeline">
-            <div class="about-timeline-item">
-              <div class="about-timeline-dot"></div>
-              <div class="about-timeline-content">
-                <div class="about-timeline-title">
-                  University at Buffalo
-                </div>
-                <div class="about-timeline-subtitle">
-                  B.S. Information Technology & Management
-                </div>
-                <div class="about-timeline-date">
-                  2024 – 2027
-                </div>
-                <div class="about-timeline-desc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer vehicula posuere justo, vitae facilisis lectus varius
-                  non. Curabitur cursus, nisl in placerat interdum, orci mi
-                  tincidunt augue, at tristique turpis elit a justo. Donec a
-                  libero at ipsum aliquet fermentum.
-                </div>
-              </div>
-            </div>
-            <div class="about-timeline-item">
-              <div class="about-timeline-dot"></div>
-              <div class="about-timeline-content">
-                <div class="about-timeline-title">
-                  Hudson Valley Community College
-                </div>
-                <div class="about-timeline-subtitle">
-                  A.S Computer Information Systems
-                </div>
-                <div class="about-timeline-date">
-                  2022 – 2024
-                </div>
-                <div class="about-timeline-desc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer vehicula posuere justo, vitae facilisis lectus varius
-                  non. Curabitur cursus, nisl in placerat interdum, orci mi
-                  tincidunt augue, at tristique turpis elit a justo. Donec a
-                  libero at ipsum aliquet fermentum.
+          <!-- ======== Education ======== -->
+          <section class="about-section">
+            <div class="about-section-label">Education</div>
+            <div class="about-timeline">
+              <div class="about-timeline-item">
+                <div class="about-timeline-dot"></div>
+                <div class="about-timeline-content">
+                  <div class="about-timeline-title">
+                    University at Buffalo
+                  </div>
+                  <div class="about-timeline-subtitle">
+                    B.S. Information Technology & Management
+                  </div>
+                  <div class="about-timeline-date">
+                    2024 – 2027
+                  </div>
+                  <div class="about-timeline-desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Integer vehicula posuere justo, vitae facilisis lectus
+                    varius non. Curabitur cursus, nisl in placerat interdum,
+                    orci mi tincidunt augue, at tristique turpis elit a justo.
+                    Donec a libero at ipsum aliquet fermentum.
+                  </div>
                 </div>
               </div>
-            </div>
+              <div class="about-timeline-item">
+                <div class="about-timeline-dot"></div>
+                <div class="about-timeline-content">
+                  <div class="about-timeline-title">
+                    Hudson Valley Community College
+                  </div>
+                  <div class="about-timeline-subtitle">
+                    A.S Computer Information Systems
+                  </div>
+                  <div class="about-timeline-date">
+                    2022 – 2024
+                  </div>
+                  <div class="about-timeline-desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Integer vehicula posuere justo, vitae facilisis lectus
+                    varius non. Curabitur cursus, nisl in placerat interdum,
+                    orci mi tincidunt augue, at tristique turpis elit a justo.
+                    Donec a libero at ipsum aliquet fermentum.
+                  </div>
+                </div>
+              </div>
 
-            <!-- Add more education items as needed -->
-            <!--
+              <!-- Add more education items as needed -->
+              <!--
                         <div class="about-timeline-item">
                             <div class="about-timeline-dot"></div>
                             <div class="about-timeline-content">
@@ -389,158 +399,144 @@
                             </div>
                         </div>
                         -->
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <!-- ======== Work Experience ======== -->
-        <section class="about-section">
-          <div class="about-section-label">Experience</div>
-          <div class="about-timeline">
-            <div class="about-timeline-item">
-              <div class="about-timeline-dot"></div>
-              <div class="about-timeline-content">
-                <div class="about-timeline-title">
-                  Freelance Illustrator
-                </div>
-                <div class="about-timeline-subtitle">
-                  Self-employed
-                </div>
-                <div class="about-timeline-date">
-                  xxxx – xxxx
-                </div>
-                <div class="about-timeline-desc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vivamus vel augue nec justo bibendum placerat. Praesent ac
-                  nibh vitae arcu tristique tincidunt. Integer euismod, nisl at
-                  convallis fermentum, urna lectus dictum libero, vitae sagittis
-                  justo risus at lorem.
+          <!-- ======== Work Experience ======== -->
+          <section class="about-section">
+            <div class="about-section-label">Experience</div>
+            <div class="about-timeline">
+              <div class="about-timeline-item">
+                <div class="about-timeline-dot"></div>
+                <div class="about-timeline-content">
+                  <div class="about-timeline-title">
+                    Freelance Illustrator
+                  </div>
+                  <div class="about-timeline-subtitle">
+                    Self-employed
+                  </div>
+                  <div class="about-timeline-date">
+                    xxxx – xxxx
+                  </div>
+                  <div class="about-timeline-desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus vel augue nec justo bibendum placerat. Praesent ac
+                    nibh vitae arcu tristique tincidunt. Integer euismod, nisl
+                    at convallis fermentum, urna lectus dictum libero, vitae
+                    sagittis justo risus at lorem.
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="about-timeline-item">
-              <div class="about-timeline-dot"></div>
-              <div class="about-timeline-content">
-                <div class="about-timeline-title">
-                  Graphic Design Student Assistant
-                </div>
-                <div class="about-timeline-subtitle">
-                  University at Buffalo
-                </div>
-                <div class="about-timeline-date">
-                  xxxx – xxxx
-                </div>
-                <div class="about-timeline-desc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vivamus vel augue nec justo bibendum placerat. Praesent ac
-                  nibh vitae arcu tristique tincidunt. Integer euismod, nisl at
-                  convallis fermentum, urna lectus dictum libero, vitae sagittis
-                  justo risus at lorem.
+              <div class="about-timeline-item">
+                <div class="about-timeline-dot"></div>
+                <div class="about-timeline-content">
+                  <div class="about-timeline-title">
+                    Graphic Design Student Assistant
+                  </div>
+                  <div class="about-timeline-subtitle">
+                    University at Buffalo
+                  </div>
+                  <div class="about-timeline-date">
+                    xxxx – xxxx
+                  </div>
+                  <div class="about-timeline-desc">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus vel augue nec justo bibendum placerat. Praesent ac
+                    nibh vitae arcu tristique tincidunt. Integer euismod, nisl
+                    at convallis fermentum, urna lectus dictum libero, vitae
+                    sagittis justo risus at lorem.
+                  </div>
                 </div>
               </div>
+
+              <!-- Add more experience items as needed -->
             </div>
+          </section>
+        </div>
+      </main>
 
-            <!-- Add more experience items as needed -->
-          </div>
-        </section>
-      </div>
-    </main>
+      <footer class="copyright">
+        &copy; 2026 Jin Hee Baek / All Rights Reserved.
+      </footer>
 
-    <footer class="copyright">
-      &copy; 2026 Jin Hee Baek / All Rights Reserved.
-    </footer>
-
-    <!-- 88x31 Button Modal -->
-    <div
-      id="button88x31Modal"
-      style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 1rem"
-      onclick="if (event.target === this) this.style.display = 'none';"
-    >
+      <!-- 88x31 Button Modal -->
       <div
-        style="background: white; border-radius: 14px; padding: 2rem; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12); position: relative"
+        id="button88x31Modal"
+        style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 9999; justify-content: center; align-items: center; padding: 1rem"
+        onclick="
+                    if (event.target === this) this.style.display = 'none';
+                "
       >
-        <button
-          onclick="
-                        document.getElementById(
-                            'button88x31Modal',
-                        ).style.display = 'none'
-                    "
-          style="position: absolute; top: 0.75rem; right: 0.75rem; background: none; border: none; font-size: 1.25rem; color: #999; cursor: pointer; line-height: 1"
+        <div
+          style="background: white; border-radius: 14px; padding: 2rem; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12); position: relative"
         >
-          ✕
-        </button>
-        <img
-          src="../assets/web flair/88x31/jinhee.art.webp"
-          alt="jinhee.art 88x31 button"
-          loading="lazy"
-          decoding="async"
-          style="image-rendering: pixelated; width: 88px; height: 31px; margin-bottom: 1rem"
-        />
-        <p
-          style="font-size: 0.85rem; color: #666; line-height: 1.6; margin-bottom: 1rem"
-        >
-          this is my 88x31 button, you can link to me with this or host it on
-          your own site :3
-        </p>
-        <div style="position: relative">
           <button
             onclick="
-                            var ta =
-                                this.parentElement.querySelector('textarea');
-                            ta.select();
-                            navigator.clipboard.writeText(ta.value);
-                            this.textContent = '✓';
-                            setTimeout(() => (this.textContent = '⧉'), 1500);
+                            document.getElementById(
+                                'button88x31Modal',
+                            ).style.display = 'none'
                         "
-            style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 255, 255, 0.8); border: 1px solid #e0cfe0; border-radius: 5px; padding: 0.2rem 0.4rem; font-size: 0.75rem; color: #999; cursor: pointer; line-height: 1; z-index: 1"
+            style="position: absolute; top: 0.75rem; right: 0.75rem; background: none; border: none; font-size: 1.25rem; color: #999; cursor: pointer; line-height: 1"
           >
-            ⧉
+            ✕
           </button>
-          <textarea
-            readonly
-            onclick="this.select()"
-            style="width: 100%; font-family: 'Courier New', monospace; font-size: 0.7rem; background: #f5f0f5; border: 2px solid #f0e6f0; border-radius: 8px; padding: 0.75rem; padding-right: 2.5rem; color: #666; resize: none; line-height: 1.5; text-align: left"
-            rows="3"
+          <img
+            src="../assets/web flair/88x31/jinhee.art.webp"
+            alt="jinhee.art 88x31 button"
+            loading="lazy"
+            decoding="async"
+            style="image-rendering: pixelated; width: 88px; height: 31px; margin-bottom: 1rem"
+          />
+          <p
+            style="font-size: 0.85rem; color: #666; line-height: 1.6; margin-bottom: 1rem"
           >
-<a href="https://jinhee.art" target="_blank"><img src="https://jinhee.art/assets/web%20flair/88x31/jinhee.art.webp" alt="jinhee.art" /></a></textarea>
+            this is my 88x31 button, you can link to me with this or host it on
+            your own site :3
+          </p>
+          <div style="position: relative">
+            <button
+              onclick="
+                                var ta =
+                                    this.parentElement.querySelector(
+                                        'textarea',
+                                    );
+                                ta.select();
+                                navigator.clipboard.writeText(ta.value);
+                                this.textContent = '✓';
+                                setTimeout(
+                                    () => (this.textContent = '⧉'),
+                                    1500,
+                                );
+                            "
+              style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 255, 255, 0.8); border: 1px solid #e0cfe0; border-radius: 5px; padding: 0.2rem 0.4rem; font-size: 0.75rem; color: #999; cursor: pointer; line-height: 1; z-index: 1"
+            >
+              ⧉
+            </button>
+            <textarea
+              readonly
+              onclick="this.select()"
+              style="width: 100%; font-family: 'Courier New', monospace; font-size: 0.7rem; background: #f5f0f5; border: 2px solid #f0e6f0; border-radius: 8px; padding: 0.75rem; padding-right: 2.5rem; color: #666; resize: none; line-height: 1.5; text-align: left"
+              rows="3"
+            >
+<a href="https://jinhee.art" target="_blank"><img src="https://jinhee.art/assets/web%20flair/88x31/jinhee.art.webp" alt="jinhee.art" /></a>
+                        </textarea>
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="../components/navbar/navbar.js"></script>
-    <script src="../components/sparkle/sparkle.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const details = document.querySelector(
-          ".about-flair-collapsible",
-        );
-        if (!details) return;
-        const summary = details.querySelector("summary");
-        const content = details.querySelector(".about-flair-content");
+    <!-- Music Player -->
+    <div id="music-player-widget"></div>
 
-        summary.addEventListener("click", (e) => {
-          if (details.open) {
-            e.preventDefault();
-            content.addEventListener(
-              "transitionend",
-              function handler() {
-                content.removeEventListener(
-                  "transitionend",
-                  handler,
-                );
-                details.removeAttribute("open");
-              },
-            );
-            content.style.maxHeight = "0";
-            content.style.opacity = "0";
-            content.style.padding = "0 1rem";
-          } else {
-            content.style.removeProperty("max-height");
-            content.style.removeProperty("opacity");
-            content.style.removeProperty("padding");
-          }
-        });
-      });
-    </script>
+    <script src="../components/navbar/navbar.js"></script>
+    <script src="../components/bg/bg.js"></script>
+    <script src="../components/music-player/music-player.js"></script>
+    <script src="../components/music-player/music-player-init.js"></script>
+    <script src="../components/home/home.js"></script>
+    <script src="../components/pjax/pjax.js"></script>
+
+    <script src="../components/about/about.js"></script>
+    <script src="../components/sparkle/sparkle.js"></script>
   </body>
 </html>

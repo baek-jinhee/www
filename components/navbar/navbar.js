@@ -24,6 +24,11 @@ class Navbar {
 
         this.setupEventListeners();
         this.setActivePage();
+
+        window.__navbarInstance = this;
+        window.addEventListener("site:navigate:end", () => {
+          this.setActivePage();
+        });
       })
       .catch((error) => console.error("Error loading navbar:", error));
   }
@@ -38,25 +43,26 @@ class Navbar {
     document.body.appendChild(this.backdrop);
 
     if (this.hamburger && this.navMenu) {
+      const closeMenu = () => {
+        this.navMenu.classList.remove("active");
+        this.hamburger.classList.remove("active");
+        this.backdrop.classList.remove("active");
+      };
+
       this.hamburger.addEventListener("click", () => {
         this.navMenu.classList.toggle("active");
         this.hamburger.classList.toggle("active");
         this.backdrop.classList.toggle("active");
       });
 
-      this.backdrop.addEventListener("click", () => {
-        this.navMenu.classList.remove("active");
-        this.hamburger.classList.remove("active");
-        this.backdrop.classList.remove("active");
-      });
+      this.backdrop.addEventListener("click", closeMenu);
 
       document.querySelectorAll(".nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          this.navMenu.classList.remove("active");
-          this.hamburger.classList.remove("active");
-          this.backdrop.classList.remove("active");
-        });
+        link.addEventListener("click", closeMenu);
       });
+
+      window.addEventListener("site:navigate", closeMenu);
+      window.addEventListener("site:navigate:end", closeMenu);
     }
   }
 

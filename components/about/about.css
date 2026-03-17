@@ -2,8 +2,9 @@
 .about-layout {
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 0 2rem 4rem;
   animation: aboutFadeIn 0.5s ease forwards;
+  position: relative;
 }
 
 @keyframes aboutFadeIn {
@@ -19,44 +20,82 @@
 
 /* ---- Section Shared Styles ---- */
 .about-section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  padding: 1.75rem 2rem;
+  box-shadow:
+    0 18px 60px rgba(216, 168, 216, 0.18),
+    0 6px 18px rgba(180, 210, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Scroll reveal base state */
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
+.about-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Section Label ---- */
 .about-section-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #bbb;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid #f0e6f0;
+  color: #c0a0c0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  position: relative;
+}
+
+.about-section-label::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    #e4b4e4 0%,
+    #b4ccf8 55%,
+    transparent 100%
+  );
 }
 
 /* ---- About Me / Bio ---- */
 .about-bio {
-  overflow: hidden; /* contain floated avatar */
+  overflow: hidden;
 }
 
 .about-avatar {
   float: left;
-  width: 160px;
-  margin-top: 0.25rem;
-  margin-right: 1rem;
+  width: 185px;
+  margin-top: 0.15rem;
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .about-avatar img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 16px;
   display: block;
+  box-shadow:
+    0 8px 32px rgba(216, 168, 216, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.07);
 }
 
 .about-avatar-placeholder {
   width: 100%;
   aspect-ratio: 1;
   border: 2px dashed #e0cfe0;
-  border-radius: 12px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,8 +108,8 @@
 }
 
 .about-bio-text p {
-  font-size: 0.95rem;
-  color: #666;
+  font-size: 1rem;
+  color: #5a5a6a;
   line-height: 1.8;
   margin-bottom: 0.75rem;
   text-align: justify;
@@ -78,6 +117,30 @@
 
 .about-bio-text p:last-child {
   margin-bottom: 0;
+}
+
+@media screen and (min-width: 901px) {
+  .about-bio {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .about-avatar {
+    float: none;
+    margin: 0;
+    width: 185px;
+  }
+
+  .about-avatar img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-bio-text {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
 /* ---- Tools / Programs ---- */
@@ -92,18 +155,37 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.75rem;
-  border: 2px solid #f0e6f0;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  width: 90px;
+  gap: 0.5rem;
+  padding: 0.85rem 0.75rem;
+  border: 1px solid rgba(240, 230, 240, 0.5);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  width: 95px;
   aspect-ratio: 1;
+  /* Scroll reveal base */
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.about-tool.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.about-tool:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(216, 168, 216, 0.24);
+  border-color: rgba(216, 168, 216, 0.5);
 }
 
 .about-tool-icon {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,6 +196,11 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  transition: transform 0.25s ease;
+}
+
+.about-tool:hover .about-tool-icon img {
+  transform: rotate(6deg) scale(1.12);
 }
 
 .about-tool-icon svg {
@@ -123,8 +210,8 @@
 
 .about-tool-name {
   font-size: 0.7rem;
-  font-weight: 600;
-  color: #999;
+  font-weight: 700;
+  color: #b0a0b8;
   letter-spacing: 0.03em;
   text-align: center;
   white-space: nowrap;
@@ -134,37 +221,59 @@
 .about-timeline {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.9rem;
 }
 
 .about-timeline-item {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  padding: 0.75rem 1rem;
-  border-left: 3px solid #e8dce8;
-  border-radius: 0 8px 8px 0;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #e8c8e8;
+  border-radius: 0 14px 14px 0;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 14px 32px rgba(216, 168, 216, 0.14),
+    0 4px 12px rgba(180, 210, 255, 0.1);
+  transition:
+    border-left-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  /* Scroll reveal base */
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+.about-timeline-item.is-visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .about-timeline-item:hover {
   border-left-color: #d8a8d8;
-  background: rgba(216, 168, 216, 0.06);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 18px 38px rgba(216, 168, 216, 0.2),
+    0 6px 16px rgba(180, 210, 255, 0.12);
+  transform: translateX(3px);
 }
 
 .about-timeline-dot {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #e0cfe0;
+  background: #e4bce4;
+  border: 2px solid white;
+  box-shadow: 0 0 0 3px rgba(216, 168, 216, 0.22);
   flex-shrink: 0;
-  margin-top: 0.5rem;
-  transition: background 0.3s ease;
+  margin-top: 0.4rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-timeline-item:hover .about-timeline-dot {
   background: #d8a8d8;
+  box-shadow: 0 0 0 4px rgba(216, 168, 216, 0.4);
 }
 
 .about-timeline-content {
@@ -173,36 +282,45 @@
 }
 
 .about-timeline-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3a3a4a;
+  margin-bottom: 0.15rem;
 }
 
 .about-timeline-subtitle {
-  font-size: 0.8rem;
-  color: #bbb;
-  margin-bottom: 0.25rem;
+  font-size: 0.82rem;
+  color: #b0a0b8;
+  margin-bottom: 0.3rem;
 }
 
 .about-timeline-date {
   font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: #ccc;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .about-timeline-desc {
-  font-size: 0.85rem;
-  color: #888;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  color: #7a7a8a;
+  line-height: 1.65;
 }
 
 /* ---- Web Flair: 88x31 Buttons, Stamps, Blinkies ---- */
 .about-flair-group {
   margin-bottom: 1.5rem;
+  /* Scroll reveal base */
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.about-flair-group.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about-flair-group:last-child {
@@ -283,11 +401,19 @@
 .about-flair-collapsible {
   clear: both;
   margin-top: 1.25rem;
-  border: 2px solid #f0e6f0;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px solid #eee4f0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8e9f8 0%, #eef3ff 100%);
   overflow: hidden;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, opacity 0.45s ease, transform 0.45s ease;
+  /* Scroll reveal base */
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.about-flair-collapsible.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about-flair-collapsible:hover {
@@ -295,11 +421,11 @@
 }
 
 .about-flair-collapsible summary {
-  padding: 0.6rem 1rem;
+  padding: 0.65rem 1rem;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: #bbb;
+  color: #c0a0c0;
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -330,6 +456,8 @@
 
 .about-flair-content {
   padding: 0 1rem;
+  background: white;
+  background-clip: padding-box;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -340,6 +468,23 @@
   max-height: 800px;
   opacity: 1;
   padding: 0 1rem 1rem;
+  background: white;
+}
+
+.about-flair-content .about-flair-row:first-of-type {
+  margin-top: 0.75rem;
+}
+
+/* ---- Page Header Scroll Reveal ---- */
+body[data-page="about"] .page-header {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+body[data-page="about"] .page-header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ==============================
@@ -349,12 +494,17 @@
 /* ---- Tablet ---- */
 @media screen and (max-width: 768px) {
   .about-layout {
-    padding: 0 1.5rem 2rem;
+    padding: 0 1.25rem 2.5rem;
+  }
+
+  .about-section {
+    padding: 1.5rem 1.5rem;
+    border-radius: 16px;
   }
 
   .about-avatar {
-    width: 120px;
-    margin-right: 1.5rem;
+    width: 130px;
+    margin-right: 1.25rem;
   }
 
   .about-tools-grid {
@@ -362,14 +512,14 @@
   }
 
   .about-tool {
-    width: 80px;
-    padding: 0.6rem;
-    gap: 0.3rem;
+    width: 84px;
+    padding: 0.7rem 0.6rem;
+    gap: 0.35rem;
   }
 
   .about-tool-icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
   }
 
   .about-tool-name {
@@ -381,18 +531,24 @@
   }
 
   .about-timeline-item {
-    padding: 0.6rem 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .sticker {
+    opacity: 0.3;
   }
 }
 
 /* ---- Mobile ---- */
 @media screen and (max-width: 480px) {
   .about-layout {
-    padding: 0 1rem 1.5rem;
+    padding: 0 1rem 2rem;
   }
 
   .about-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem 1.25rem;
+    border-radius: 14px;
   }
 
   .about-avatar {
@@ -401,19 +557,19 @@
   }
 
   .about-bio-text p {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     text-align: justify;
   }
 
   .about-tool {
-    width: 68px;
-    padding: 0.5rem;
-    gap: 0.25rem;
+    width: 72px;
+    padding: 0.55rem;
+    gap: 0.28rem;
   }
 
   .about-tool-icon {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 
   .about-tool-name {
@@ -428,5 +584,10 @@
   .about-flair-row.stamps .about-flair-placeholder {
     width: 60px;
     height: 60px;
+  }
+
+  /* Hide stickers on very small screens to avoid clutter */
+  .about-stickers {
+    display: none;
   }
 }

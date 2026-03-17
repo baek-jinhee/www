@@ -1,6 +1,8 @@
 // deno-lint-ignore no-unused-vars
 class MusicPlayer {
   constructor(containerId = "music-player-widget") {
+    this.transparentPixel =
+      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
     this.songs = [];
     this.currentIndex = 0;
     this.isPlaying = false;
@@ -8,15 +10,39 @@ class MusicPlayer {
     this.containerId = containerId;
     this.isCollapsed = true;
     this.isInitialLoad = true;
+    this.storageKeyCollapsed = "music_player_collapsed";
+    this.closeTimerId = null;
 
     // Create audio element
     this.audio = new Audio();
+    // Avoid downloading full tracks until the user hits play.
+    this.audio.preload = "metadata";
     this.audio.addEventListener("timeupdate", () => this.updateProgress());
     this.audio.addEventListener("ended", () => this.nextSong());
     this.audio.addEventListener("loadedmetadata", () => this.updateDuration());
 
+    this.restoreState();
+
     // Initialize the widget
     this.initializeWidget();
+  }
+
+  restoreState() {
+    try {
+      const stored = localStorage.getItem(this.storageKeyCollapsed);
+      if (stored === "true") this.isCollapsed = true;
+      if (stored === "false") this.isCollapsed = false;
+    } catch {
+      // ignore storage failures
+    }
+  }
+
+  persistState() {
+    try {
+      localStorage.setItem(this.storageKeyCollapsed, String(this.isCollapsed));
+    } catch {
+      // ignore storage failures
+    }
   }
 
   initializeWidget() {
@@ -31,21 +57,33 @@ class MusicPlayer {
             <div class="music-player">
                 <div class="player-header">
                     <div class="player-header-content">
-                        <div class="album-art-mini">
-                            <i class="fa-solid fa-music"></i>
-                        </div>
                         <div class="player-header-info">
-                            <div class="song-title-display" id="songTitleHeader">cool music ₍ᐢ. .ᐢ₎ ₊˚⊹♡</div>
+                            <div class="player-header-title">
+                                <i class="fa-solid fa-music" aria-hidden="true"></i>
+                                <span>cool music ( ᵔ ᵕ ᵔ ) +*:♡</span>
+                            </div>
                         </div>
                     </div>
-                    <button id="toggleBtn" class="toggle-btn" title="Toggle Player">
+                    <div class="player-header-actions">
+                        <button id="playBtnMini" class="control-btn mini-play-btn" title="Play/Pause">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button id="toggleBtn" class="toggle-btn" title="Toggle Player" aria-label="Expand player">
                         <i class="fa-solid fa-chevron-up"></i>
-                    </button>
+                        </button>
+                    </div>
                 </div>
-                <div class="player-container">
+                <div class="player-container" hidden>
                     <div class="player-display">
                         <div class="album-art">
-                            <img id="albumArt" src="https://via.placeholder.com/200" alt="Album Art">
+                            <img
+                              id="albumArt"
+                              src="${this.transparentPixel}"
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              fetchpriority="low"
+                            >
                         </div>
                     </div>
 
@@ -82,10 +120,19 @@ class MusicPlayer {
     // Initialize DOM elements
     this.initializeElements();
     this.attachEventListeners();
+    this.mountAnimation();
+  }
+
+  mountAnimation() {
+    // Soft "emerge" animation after insertion.
+    requestAnimationFrame(() => {
+      if (this.musicPlayerEl) this.musicPlayerEl.classList.add("is-mounted");
+    });
   }
 
   initializeElements() {
     this.playBtn = document.getElementById("playBtn");
+    this.playBtnMini = document.getElementById("playBtnMini");
     this.prevBtn = document.getElementById("prevBtn");
     this.nextBtn = document.getElementById("nextBtn");
     this.progressBar = document.getElementById("progressBar");
@@ -98,12 +145,16 @@ class MusicPlayer {
     this.toggleBtn = document.getElementById("toggleBtn");
     this.playerContainer = document.querySelector(".player-container");
     this.playerHeader = document.querySelector(".player-header");
-    this.songTitleHeader = document.getElementById("songTitleHeader");
+    this.musicPlayerEl = document.querySelector(".music-player");
     this.updateCollapsedState();
   }
 
   attachEventListeners() {
     this.playBtn.addEventListener("click", () => this.togglePlay());
+    this.playBtnMini.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.togglePlay();
+    });
     this.prevBtn.addEventListener("click", () => this.previousSong());
     this.nextBtn.addEventListener("click", () => this.nextSong());
     this.progressBar.addEventListener(
@@ -115,34 +166,60 @@ class MusicPlayer {
       this.toggleCollapse();
     });
     this.playerHeader.addEventListener("click", () => this.toggleCollapse());
+    this.playerHeader.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.toggleCollapse();
+      }
+    });
+
+    document.addEventListener("pointerdown", (e) => {
+      if (this.isCollapsed) return;
+      if (!this.musicPlayerEl) return;
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (!this.musicPlayerEl.contains(target)) {
+        this.isCollapsed = true;
+        this.updateCollapsedState();
+        this.persistState();
+      }
+    });
   }
 
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
     this.updateCollapsedState();
+    this.persistState();
   }
 
   updateCollapsedState() {
     if (this.isCollapsed) {
+      if (this.musicPlayerEl) {
+        this.musicPlayerEl.classList.remove("is-expanded");
+      }
+
       if (this.isInitialLoad) {
         this.playerContainer.style.display = "none";
+        this.playerContainer.hidden = true;
         this.isInitialLoad = false;
       } else {
         this.playerContainer.classList.add("collapse");
         this.playerContainer.addEventListener(
           "animationend",
           () => {
-            if (this.isCollapsed) {
-              this.playerContainer.style.display = "none";
-            }
+            if (!this.isCollapsed) return;
+            this.playerContainer.style.display = "none";
+            this.playerContainer.hidden = true;
           },
           { once: true },
         );
       }
       this.toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
     } else {
+      this.playerContainer.hidden = false;
       this.playerContainer.classList.remove("collapse");
-      this.playerContainer.style.display = "flex";
+      this.playerContainer.style.display = "grid";
+      if (this.musicPlayerEl) this.musicPlayerEl.classList.add("is-expanded");
       this.toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
     }
   }
@@ -158,9 +235,14 @@ class MusicPlayer {
 
     const song = this.songs[this.currentIndex];
     this.audio.src = song.url;
+    // Trigger a lightweight metadata request (duration) without fetching the whole file.
+    this.audio.load();
     this.songTitle.textContent = song.title;
     this.artistName.textContent = song.artist;
-    this.albumArt.src = song.albumArt || "https://via.placeholder.com/200";
+    this.albumArt.src = song.albumArt || this.transparentPixel;
+    this.progressBar.value = 0;
+    this.currentTimeEl.textContent = "0:00";
+    this.durationEl.textContent = "0:00";
   }
 
   togglePlay() {
@@ -221,10 +303,13 @@ class MusicPlayer {
     this.playBtn.classList.toggle("playing", this.isPlaying);
 
     const icon = this.playBtn.querySelector("i");
+    const miniIcon = this.playBtnMini.querySelector("i");
     if (this.isPlaying) {
       icon.className = "fa-solid fa-pause";
+      miniIcon.className = "fa-solid fa-pause";
     } else {
       icon.className = "fa-solid fa-play";
+      miniIcon.className = "fa-solid fa-play";
     }
   }
 

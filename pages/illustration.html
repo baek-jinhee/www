@@ -6,36 +6,123 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Illustration - Jinhee Baek</title>
+    <title>Jinhee Baek (Jeiblossom) | Illustration</title>
     <meta
       name="description"
       content="Illustration portfolio by Jinhee Baek – digital art from 2016 to present."
     />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../components/bg/bg.css" />
     <link rel="stylesheet" href="../components/masonry/masonry.css" />
+    <link
+      rel="stylesheet"
+      href="../components/music-player/music-player.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-  <body>
-    <main class="page-content">
-      <div class="page-header">
-        <h1>Illustration ᓚ₍⑅^..^₎♡</h1>
-        <div class="year-tabs">
-          <button class="year-tab active" data-year="2026">
-            2026
-          </button>
-          <button class="year-tab" data-year="2025">2025</button>
-          <button class="year-tab" data-year="archive">
-            Archive
-          </button>
+  <body data-page="illustration">
+    <div id="pjax-root">
+      <main class="page-content">
+        <div class="page-header">
+          <h1>Illustration ᓚ₍⑅^..^₎♡</h1>
         </div>
-      </div>
-      <div id="gallery"></div>
-    </main>
+        <div class="illustration-layout">
+          <section class="illustration-panel illustration-featured">
+            <div class="illustration-featured-header">
+              <h2>Featured</h2>
+              <p>
+                A small selection of my favorite recent pieces, spanning
+                character design, pastel studies, and fan art.
+              </p>
+            </div>
+            <div class="illustration-featured-grid">
+              <article class="illustration-feature-card">
+                <div class="illustration-feature-card-media">
+                  <img
+                    src="../assets/images/illustration/2026/pony2.avif"
+                    alt="Pastel pony illustration"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="illustration-feature-card-body">
+                  <h3>Pastel Pony</h3>
+                  <p>
+                    Soft gradients and expressive linework to capture a dreamy,
+                    nostalgic vibe.
+                  </p>
+                </div>
+              </article>
+              <article class="illustration-feature-card">
+                <div class="illustration-feature-card-media">
+                  <img
+                    src="../assets/images/illustration/2026/jia2.avif"
+                    alt="Character portrait illustration"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="illustration-feature-card-body">
+                  <h3>Character Portrait</h3>
+                  <p>
+                    A warm, painterly study focused on light, texture, and soft
+                    color harmony.
+                  </p>
+                </div>
+              </article>
+              <article class="illustration-feature-card">
+                <div class="illustration-feature-card-media">
+                  <img
+                    src="../assets/images/illustration/2026/wish2.avif"
+                    alt="Fantasy illustration"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="illustration-feature-card-body">
+                  <h3>Wish</h3>
+                  <p>
+                    A glittery fantasy moment with layered lighting and sparkly
+                    detail work.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </section>
+          <section class="illustration-panel">
+            <div class="year-tabs">
+              <button class="year-tab active" data-year="2026">
+                2026
+              </button>
+              <button class="year-tab" data-year="2025">
+                2025
+              </button>
+              <button class="year-tab" data-year="archive">
+                Archive
+              </button>
+            </div>
+            <div id="gallery"></div>
+          </section>
+        </div>
+      </main>
 
-    <footer class="copyright">
-      © 2026 Jin Hee Baek / All Rights Reserved.
-    </footer>
+      <footer class="copyright">
+        © 2026 Jin Hee Baek / All Rights Reserved.
+      </footer>
+    </div>
+
+    <!-- Music Player -->
+    <div id="music-player-widget"></div>
 
     <script src="../components/navbar/navbar.js"></script>
+    <script src="../components/bg/bg.js"></script>
+    <script src="../components/music-player/music-player.js"></script>
+    <script src="../components/music-player/music-player-init.js"></script>
+    <script src="../components/home/home.js"></script>
+    <script src="../components/pjax/pjax.js"></script>
     <script src="../components/masonry/masonry.js"></script>
     <script src="../components/sparkle/sparkle.js"></script>
   </body>

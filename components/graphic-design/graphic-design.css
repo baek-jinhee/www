@@ -1,21 +1,35 @@
 /* ---- Graphic Design Portfolio Layout ---- */
 .gd-layout {
-  display: flex;
-  gap: 2rem;
-  max-width: 1400px;
+  --gd-sidebar-width: 260px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem 3rem;
+  display: grid;
+  grid-template-columns:
+    minmax(200px, var(--gd-sidebar-width))
+    minmax(0, 1fr);
+  gap: 1.5rem;
   min-height: 60vh;
+  animation: aboutFadeIn 0.5s ease forwards;
+}
+
+.gd-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  box-shadow:
+    0 18px 60px rgba(216, 168, 216, 0.18),
+    0 6px 18px rgba(180, 210, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ---- Left Sidebar ---- */
 .gd-sidebar {
-  width: 220px;
-  flex-shrink: 0;
   position: sticky;
-  top: 100px;
-  align-self: flex-start;
-  max-height: calc(100vh - 140px);
+  top: 110px;
+  align-self: start;
+  max-height: calc(100vh - 160px);
   overflow-y: auto;
 }
 
@@ -73,13 +87,37 @@
 .gd-main {
   flex: 1;
   min-width: 0;
+  grid-column: 1 / -1;
+}
+
+.gd-main.gd-panel {
+  padding-top: 1.5rem;
+}
+
+.gd-title {
+  grid-column: 2;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gd-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.gd-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c0a0c0;
 }
 
 /* ---- Project Detail Header ---- */
 .gd-detail-header {
   margin-bottom: 1.75rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid #eee;
 }
 
 .gd-detail-title {
@@ -106,26 +144,110 @@
   max-width: 700px;
 }
 
-/* ---- Project Image Grid ---- */
-.gd-image-grid {
+.gd-bullet-list {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.2rem;
+  color: #777;
+  line-height: 1.6;
+}
+
+.gd-bullet-list li {
+  font-size: 0.95rem;
+}
+
+/* ---- Project Deliverables Grid ---- */
+.gd-deliverables-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
 }
 
-.gd-image-grid img {
+.gd-deliverable {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 36px rgba(216, 168, 216, 0.16),
+    0 6px 14px rgba(180, 210, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.gd-deliverable-media {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.gd-deliverable-media img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 6px;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   object-fit: cover;
 }
 
-.gd-image-grid img:hover {
+.gd-deliverable-media img:hover {
   transform: scale(0.98);
   filter: brightness(0.92);
+}
+
+.gd-deliverable-caption {
+  padding: 0.9rem 1rem 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.gd-deliverable-title {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.gd-deliverable-usage {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #b7a3b7;
+}
+
+/* ---- Project Navigation ---- */
+.gd-project-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.gd-project-nav-btn,
+.gd-project-nav-disabled {
+  flex: 1;
+  text-align: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(216, 168, 216, 0.12);
+  border: 2px solid rgba(216, 168, 216, 0.35);
+  color: #888;
+}
+
+.gd-project-nav-btn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gd-project-nav-btn:hover {
+  background: rgba(216, 168, 216, 0.25);
+  border-color: #d8a8d8;
+  color: #555;
+}
+
+.gd-project-nav-disabled {
+  opacity: 0.5;
 }
 
 /* ---- Empty / Placeholder State ---- */
@@ -189,6 +311,18 @@
   cursor: default;
 }
 
+/* ---- Page Header Scroll Reveal ---- */
+body[data-page="graphic-design"] .page-header {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+body[data-page="graphic-design"] .page-header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ==============================
    RESPONSIVE
    ============================== */
@@ -196,9 +330,17 @@
 /* ---- Tablet ---- */
 @media screen and (max-width: 900px) {
   .gd-layout {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-    padding: 0 1rem 2rem;
+    padding: 0 1.25rem 2rem;
+  }
+
+  .gd-title {
+    grid-column: auto;
+  }
+
+  .gd-main {
+    grid-column: auto;
   }
 
   .gd-sidebar {
@@ -210,11 +352,15 @@
 
   .gd-project-list {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scroll-snap-type: x mandatory;
   }
 
   .gd-project-btn {
+    scroll-snap-align: start;
     border-left: none;
     border-bottom: 2px solid transparent;
     border-radius: 20px;
@@ -222,6 +368,7 @@
     font-size: 0.8rem;
     text-align: center;
     border: 2px solid #e0cfe0;
+    white-space: nowrap;
   }
 
   .gd-project-btn:hover {
@@ -243,10 +390,18 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 8px;
   }
+
+  .gd-panel {
+    padding: 1.25rem 1.4rem;
+  }
 }
 
 /* ---- Mobile ---- */
 @media screen and (max-width: 480px) {
+  .gd-layout {
+    padding: 0 1rem 1.5rem;
+  }
+
   .gd-detail-title {
     font-size: 1.3rem;
   }
@@ -255,12 +410,12 @@
     font-size: 0.9rem;
   }
 
-  .gd-image-grid {
+  .gd-deliverables-grid {
     grid-template-columns: 1fr;
     gap: 8px;
   }
 
-  .gd-image-grid img {
-    border-radius: 4px;
+  .gd-deliverable {
+    border-radius: 10px;
   }
 }

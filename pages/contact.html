@@ -6,90 +6,111 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Contact - Jinhee Baek</title>
+    <title>Jinhee Baek (Jeiblossom) | Contact</title>
     <meta
       name="description"
       content="Get in touch with Jinhee Baek – commissions, questions, or just say hi!"
     />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../components/bg/bg.css" />
     <link rel="stylesheet" href="../components/contact/contact.css" />
+    <link
+      rel="stylesheet"
+      href="../components/music-player/music-player.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-  <body>
-    <main class="page-content">
-      <div class="page-header">
-        <h1>Contact ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</h1>
-      </div>
-      <div class="contact-layout">
-        <div class="contact-form-wrapper">
-          <h2>Get in Touch</h2>
-          <p class="contact-subtitle">
-            Have a question, commission request, or just want to say hi? Drop me
-            a message and I'll get back to you!
-          </p>
-          <form id="contact-form" class="contact-form">
-            <div class="form-group">
-              <label for="from_name">Name</label>
-              <input
-                type="text"
-                id="from_name"
-                name="from_name"
-                placeholder="Your name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="from_email">Email</label>
-              <input
-                type="email"
-                id="from_email"
-                name="from_email"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="What's this about?"
-              />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Write your message here..."
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              id="contact-send-btn"
-              class="contact-send-btn"
-            >
-              Send Message
-            </button>
-            <div id="contact-status" class="contact-status"></div>
-          </form>
+  <body data-page="contact">
+    <div id="pjax-root">
+      <main class="page-content">
+        <div class="page-header">
+          <h1>Contact ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</h1>
         </div>
-
-        <div class="contact-pagedoll">
-          <img
-            src="../assets/images/misc/pagedoll_pafrait.avif"
-            alt="Jinhee's pagedoll"
-            loading="lazy"
-            decoding="async"
-          />
+        <div class="contact-layout">
+          <section class="contact-panel">
+            <div class="contact-panel-inner">
+              <div class="contact-form-wrapper">
+                <h2>Get in Touch</h2>
+                <p class="contact-panel-subtitle">
+                  Have a question, commission request, or just want to say hi?
+                  Drop me a message and I'll get back to you!
+                </p>
+                <form id="contact-form" class="contact-form">
+                  <div class="form-group">
+                    <label for="from_name">Name</label>
+                    <input
+                      type="text"
+                      id="from_name"
+                      name="from_name"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="from_email">Email</label>
+                    <input
+                      type="email"
+                      id="from_email"
+                      name="from_email"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      placeholder="What's this about?"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      placeholder="Write your message here..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    id="contact-send-btn"
+                    class="contact-send-btn"
+                  >
+                    Send Message
+                  </button>
+                  <div
+                    id="contact-status"
+                    class="contact-status"
+                  >
+                  </div>
+                </form>
+              </div>
+              <div class="contact-pagedoll">
+                <img
+                  src="../assets/images/misc/pagedoll_pafrait.avif"
+                  alt="Jinhee's pagedoll"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
-    </main>
+      </main>
 
-    <footer class="copyright">
-      &copy; 2026 Jin Hee Baek / All Rights Reserved.
-    </footer>
+      <footer class="copyright">
+        &copy; 2026 Jin Hee Baek / All Rights Reserved.
+      </footer>
+    </div>
+
+    <!-- Music Player -->
+    <div id="music-player-widget"></div>
 
     <!-- EmailJS SDK – load before contact.js -->
     <script
@@ -98,6 +119,11 @@
     ></script>
 
     <script src="../components/navbar/navbar.js"></script>
+    <script src="../components/bg/bg.js"></script>
+    <script src="../components/music-player/music-player.js"></script>
+    <script src="../components/music-player/music-player-init.js"></script>
+    <script src="../components/home/home.js"></script>
+    <script src="../components/pjax/pjax.js"></script>
     <script src="../components/contact/contact.js"></script>
     <script src="../components/sparkle/sparkle.js"></script>
   </body>

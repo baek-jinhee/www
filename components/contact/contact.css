@@ -1,31 +1,65 @@
 /* ---- Contact Layout ---- */
 .contact-layout {
-  display: flex;
-  gap: 3rem;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem 3rem;
-  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: aboutFadeIn 0.5s ease forwards;
+}
+
+/* ---- Page Header Scroll Reveal ---- */
+body[data-page="contact"] .page-header {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+body[data-page="contact"] .page-header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  padding: 1.75rem 2rem;
+  box-shadow:
+    0 18px 60px rgba(216, 168, 216, 0.18),
+    0 6px 18px rgba(180, 210, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.contact-panel h2,
+.contact-form-wrapper h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c0a0c0;
+  margin-bottom: 0.75rem;
+}
+
+.contact-panel-subtitle {
+  font-size: 0.95rem;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.contact-panel-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(260px, 360px);
+  gap: 2rem;
+  align-items: start;
 }
 
 /* ---- Contact Form (Left Side) ---- */
 .contact-form-wrapper {
   flex: 1;
   min-width: 0;
-}
-
-.contact-form-wrapper h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.25rem;
-}
-
-.contact-subtitle {
-  font-size: 0.9rem;
-  color: #aaa;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
 }
 
 .contact-form {
@@ -135,17 +169,19 @@
 
 /* ---- Pagedoll / Character Illustration (Right Side) ---- */
 .contact-pagedoll {
-  width: 280px;
-  flex-shrink: 0;
+  align-self: center;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
+  justify-self: center;
 }
 
 .contact-pagedoll img {
   width: 100%;
+  max-width: 320px;
   height: auto;
   display: block;
   /* subtle floating animation */
@@ -178,33 +214,19 @@
   }
 }
 
-/* ---- Fade-in animation ---- */
-.contact-layout {
-  animation: contactFadeIn 0.5s ease forwards;
-}
-
-@keyframes contactFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* ==============================
    RESPONSIVE
    ============================== */
 
 /* ---- Tablet ---- */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .contact-layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
     padding: 0 1.5rem 2rem;
+  }
+
+  .contact-panel-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .contact-form-wrapper {
@@ -213,19 +235,27 @@
   }
 
   .contact-pagedoll {
-    display: none;
+    width: 220px;
+    margin: 0 auto;
+    order: 2;
   }
 
   .contact-send-btn {
     align-self: center;
   }
 
-  .contact-subtitle {
-    text-align: center;
-  }
-
   .contact-form-wrapper h2 {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contact-panel {
+    padding: 1.25rem 1.4rem;
+  }
+
+  .contact-panel-subtitle {
+    font-size: 0.9rem;
   }
 }
 

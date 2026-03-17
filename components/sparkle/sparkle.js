@@ -24,15 +24,44 @@ const tinyv = [];
 
 let isHome = false;
 
-window.addEventListener("load", function () {
+let sparkleRunning = false;
+
+function resetSparkles() {
+  for (let i = 0; i < sparkles; i++) {
+    if (tiny[i] && tiny[i].parentNode) {
+      tiny[i].parentNode.removeChild(tiny[i]);
+    }
+    if (star[i] && star[i].parentNode) {
+      star[i].parentNode.removeChild(star[i]);
+    }
+  }
+
+  tiny.length = 0;
+  star.length = 0;
+  starv.length = 0;
+  starx.length = 0;
+  stary.length = 0;
+  tinyx.length = 0;
+  tinyy.length = 0;
+  tinyv.length = 0;
+}
+
+function initSparkles() {
   if (document.querySelector(".hero")) {
     colour = "white";
     isHome = true;
+  } else {
+    colour = "oklch(0.9353 0.1011 315.53)";
+    isHome = false;
   }
+
   const tinySize = isHome ? 5 : 3;
   const starSize = isHome ? 8 : 5;
   const barW = isHome ? 2 : 1;
   const barOff = isHome ? 3 : 2;
+
+  resetSparkles();
+
   if (document.getElementById) {
     for (let i = 0; i < sparkles; i++) {
       const tinyParticle = createDiv(tinySize, tinySize);
@@ -57,10 +86,17 @@ window.addEventListener("load", function () {
       star[i] = starParticle;
       document.body.appendChild(starParticle);
     }
+    set_scroll();
     set_width();
-    sparkle();
+    if (!sparkleRunning) {
+      sparkleRunning = true;
+      sparkle();
+    }
   }
-});
+}
+
+window.addEventListener("load", initSparkles);
+window.addEventListener("site:navigate:end", initSparkles);
 
 function sparkle() {
   if (x != ox || y != oy) {
