@@ -13,33 +13,23 @@ const REDUCED_MOTION = typeof window !== "undefined" &&
   window.matchMedia &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function initContactHeaderReveal() {
-  const header = document.querySelector(".page-header");
-  if (!header) return;
-  if (header.dataset.revealBound === "true") return;
-  header.dataset.revealBound = "true";
+function revealContactPage() {
+  const layout = document.querySelector(".contact-layout");
+  if (!layout) return;
 
-  if (REDUCED_MOTION || typeof IntersectionObserver === "undefined") {
-    header.classList.add("is-visible");
+  const elements = Array.from(
+    document.querySelectorAll(".page-header, .contact-layout"),
+  );
+  if (elements.length === 0) return;
+
+  if (REDUCED_MOTION) {
+    for (const el of elements) el.classList.add("is-visible");
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target);
-      }
-    },
-    {
-      root: null,
-      rootMargin: "0px 0px -10% 0px",
-      threshold: 0.12,
-    },
-  );
-
-  observer.observe(header);
+  for (const el of elements) el.classList.remove("is-visible");
+  void layout.offsetHeight;
+  for (const el of elements) el.classList.add("is-visible");
 }
 
 function restartPagedollAnimation() {
@@ -144,17 +134,17 @@ function isValidEmail(email) {
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initContactForm();
-    initContactHeaderReveal();
+    revealContactPage();
     restartPagedollAnimation();
   });
 } else {
   initContactForm();
-  initContactHeaderReveal();
+  revealContactPage();
   restartPagedollAnimation();
 }
 
 window.addEventListener("site:navigate:end", () => {
   initContactForm();
-  initContactHeaderReveal();
+  revealContactPage();
   restartPagedollAnimation();
 });

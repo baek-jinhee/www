@@ -8,13 +8,14 @@
   const LOADED_SCRIPTS = new Set(
     Array.from(document.querySelectorAll("script[src]")).map((s) => s.src),
   );
-  const LOADED_STYLES = new Set(
+  const STYLE_LOADS = new Map(
     Array.from(document.querySelectorAll('link[rel="stylesheet"][href]')).map(
-      (l) => l.href,
+      (l) => [l.href, Promise.resolve()],
     ),
   );
 
   let inFlight = null;
+  let navigationToken = 0;
 
   function isModifiedClick(e) {
     return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0;
@@ -114,7 +115,7 @@
     }
   }
 
-  function syncBodyBackgroundAttrs(nextDoc) {
+  function syncBodyAttrs(nextDoc) {
     const body = document.body;
     const nextBody = nextDoc.body;
     if (!body || !nextBody) return;
@@ -137,21 +138,50 @@
     }
   }
 
-  function loadMissingStyles(doc, baseUrl) {
+  function waitForStylesheet(link, timeoutMs) {
+    return new Promise((resolve) => {
+      let settled = false;
+
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        resolve();
+      };
+
+      link.addEventListener("load", finish, { once: true });
+      link.addEventListener("error", finish, { once: true });
+      setTimeout(finish, timeoutMs);
+    });
+  }
+
+  async function loadMissingStyles(doc, baseUrl) {
     const links = Array.from(
       doc.querySelectorAll('link[rel="stylesheet"][href]'),
     );
+
+    const pending = [];
     for (const link of links) {
       const hrefAttr = link.getAttribute("href");
       const resolved = resolveUrl(hrefAttr, baseUrl);
       if (!resolved) continue;
-      if (LOADED_STYLES.has(resolved.href)) continue;
-      LOADED_STYLES.add(resolved.href);
+
+      const href = resolved.href;
+      if (STYLE_LOADS.has(href)) {
+        pending.push(STYLE_LOADS.get(href));
+        continue;
+      }
 
       const el = document.createElement("link");
       el.rel = "stylesheet";
-      el.href = resolved.href;
+      el.href = href;
+      const loadPromise = waitForStylesheet(el, 3000);
+      STYLE_LOADS.set(href, loadPromise);
+      pending.push(loadPromise);
       document.head.appendChild(el);
+    }
+
+    if (pending.length > 0) {
+      await Promise.all(pending);
     }
   }
 
@@ -187,12 +217,26 @@
   async function navigateTo(url, opts) {
     const options = opts || {};
     const push = options.push !== false;
+    const targetUrl = String(url);
+    const currentUrl = window.location.href;
+
+    if (targetUrl === currentUrl && !options.force) {
+      dispatchNavigateEnd(targetUrl, {
+        title: document.title,
+        path: window.location.pathname,
+        search: window.location.search,
+        hash: window.location.hash,
+      });
+      return;
+    }
 
     const currentRoot = document.querySelector(ROOT_SELECTOR);
     if (!currentRoot) {
-      window.location.href = String(url);
+      window.location.href = targetUrl;
       return;
     }
+
+    const token = ++navigationToken;
 
     if (inFlight) {
       try {
@@ -204,47 +248,59 @@
     const controller = new AbortController();
     inFlight = controller;
 
-    dispatchNavigate(url);
+    dispatchNavigate(targetUrl);
 
     let text = "";
     try {
-      const res = await fetch(String(url), {
+      const res = await fetch(targetUrl, {
         signal: controller.signal,
         headers: { "X-Requested-With": "pjax" },
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       text = await res.text();
     } catch (err) {
+      if (
+        controller.signal.aborted ||
+        err?.name === "AbortError" ||
+        token !== navigationToken
+      ) {
+        return;
+      }
+
       // Fallback to full navigation if fetch fails.
       console.error("PJAX fetch failed:", err);
-      window.location.href = String(url);
+      window.location.href = targetUrl;
       return;
     } finally {
       if (inFlight === controller) inFlight = null;
     }
 
+    if (token !== navigationToken) return;
+
     const parser = new DOMParser();
     const nextDoc = parser.parseFromString(text, "text/html");
     const nextRoot = nextDoc.querySelector(ROOT_SELECTOR);
     if (!nextRoot) {
-      window.location.href = String(url);
+      window.location.href = targetUrl;
       return;
     }
 
     // Update title (robust extraction for SEO + reliable PJAX swaps)
     const nextTitle = nextDoc.querySelector("title")?.textContent?.trim();
     if (nextTitle) document.title = nextTitle;
-    syncSeoHead(nextDoc, String(url), String(url));
-    syncBodyBackgroundAttrs(nextDoc);
+    syncSeoHead(nextDoc, targetUrl, targetUrl);
 
     // Load page CSS/JS before swapping (reduces flashes + ensures init code exists).
-    loadMissingStyles(nextDoc, String(url));
-    await loadMissingScripts(nextDoc, String(url));
+    await loadMissingStyles(nextDoc, targetUrl);
+    await loadMissingScripts(nextDoc, targetUrl);
+    if (token !== navigationToken) return;
 
     // History: set URL before swapping so relative assets resolve correctly.
     if (push) {
-      history.pushState({ pjax: true }, "", String(url));
+      history.pushState({ pjax: true }, "", targetUrl);
     }
+
+    syncBodyAttrs(nextDoc);
 
     // Swap content while preserving the existing root container.
     // Replacing the node can break references/styles tied to the original element.
@@ -254,7 +310,7 @@
     // Reset scroll
     window.scrollTo(0, 0);
 
-    dispatchNavigateEnd(url, {
+    dispatchNavigateEnd(targetUrl, {
       title: document.title,
       path: window.location.pathname,
       search: window.location.search,
@@ -277,6 +333,10 @@
 
     const url = resolveUrl(a.getAttribute("href"), window.location.href);
     if (!sameOrigin(url)) return;
+
+    if (url.href === window.location.href) {
+      return;
+    }
 
     // Same-page hash links: allow default behavior.
     if (

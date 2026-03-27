@@ -2,14 +2,25 @@
 // - Match right hero image height to left card on desktop
 // - Decode and fade hero images in, then start entrance animation
 (() => {
+  let homeHeroRunId = 0;
+  let homeHeroFallbackTimer = 0;
+
   function initHomeHero() {
     const hero = document.querySelector(".hero");
     if (!hero) return;
+
+    const runId = ++homeHeroRunId;
 
     const heroContent = document.querySelector(".hero-content");
     const heroImgs = document.querySelectorAll(
       ".hero-image1 img, .hero-image2 > img:first-child",
     );
+
+    if (heroContent) {
+      heroContent.classList.remove("ready");
+    }
+
+    clearTimeout(homeHeroFallbackTimer);
 
     function revealImage(img) {
       img.classList.add("loaded");
@@ -18,6 +29,12 @@
     function restartChibiAnimation() {
       const chibi = document.querySelector(".hero-chibi");
       if (!chibi) return;
+
+      if (window.innerWidth <= 768) {
+        chibi.style.animation = "none";
+        return;
+      }
+
       chibi.style.animation = "none";
       void chibi.offsetHeight;
       chibi.style.animation = "";
@@ -66,13 +83,15 @@
     });
 
     Promise.all(decodePromises).then(function () {
+      if (runId !== homeHeroRunId) return;
       matchRightImageHeight();
       restartChibiAnimation();
       if (heroContent) heroContent.classList.add("ready");
     });
 
     // Fallback: if images take too long, reveal anyway after 1.5s
-    setTimeout(function () {
+    homeHeroFallbackTimer = setTimeout(function () {
+      if (runId !== homeHeroRunId) return;
       heroImgs.forEach(function (img) {
         revealImage(img);
       });

@@ -186,6 +186,20 @@ body:not(:has(.hero)) .navbar {
   animation-play-state: running;
 }
 
+@keyframes chibi-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero-chibi {
+  animation: chibi-bounce 2s ease-in-out infinite;
+}
+
 /* Keyframes for aboutFadeIn (copied from about page) */
 @keyframes aboutFadeIn {
   from {
@@ -627,6 +641,12 @@ body:has(.hero) .copyright {
 
   .hamburger.active .bar:nth-child(3) {
     transform: translateY(-13px) rotate(45deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-chibi {
+    display: none !important;
   }
 }
 

@@ -1,6 +1,6 @@
 // Shared music player bootstrap.
 // - Shuffles playlist on page load
-// - Only initializes on screen sizes where the player is visible (>1100px)
+// - Reuses the same player on desktop and mobile
 (() => {
   if (window.__musicPlayerInit) return;
   window.__musicPlayerInit = true;
@@ -49,16 +49,5 @@
     window.__musicPlayerInstance = player;
   }
 
-  const mq = window.matchMedia("(max-width: 1100px)");
-  if (!mq.matches) initMusicPlayer();
-
-  if (typeof mq.addEventListener === "function") {
-    mq.addEventListener("change", (e) => {
-      if (!e.matches) initMusicPlayer();
-    });
-  } else if (typeof mq.addListener === "function") {
-    mq.addListener((e) => {
-      if (!e.matches) initMusicPlayer();
-    });
-  }
+  initMusicPlayer();
 })();

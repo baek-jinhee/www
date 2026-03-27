@@ -88,38 +88,31 @@ const gdProjects = [
 // ---- State ----
 let activeProjectId = gdProjects.length > 0 ? gdProjects[0].id : null;
 let gdSidebarObserver = null;
+let gdResizeBound = false;
+let gdLightboxKeydownBound = false;
 
-function initPageHeaderReveal() {
-  const header = document.querySelector(".page-header");
-  if (!header) return;
-  if (header.dataset.revealBound === "true") return;
-  header.dataset.revealBound = "true";
+function revealGraphicDesignPage() {
+  const layout = document.querySelector(".gd-layout");
+  if (!layout) return;
 
-  const reducedMotion = typeof window !== "undefined" &&
+  const elements = Array.from(
+    document.querySelectorAll(".page-header, .gd-layout"),
+  );
+  if (elements.length === 0) return;
+
+  const reducedMotion =
+    typeof window !== "undefined" &&
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (reducedMotion || typeof IntersectionObserver === "undefined") {
-    header.classList.add("is-visible");
+  if (reducedMotion) {
+    for (const el of elements) el.classList.add("is-visible");
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target);
-      }
-    },
-    {
-      root: null,
-      rootMargin: "0px 0px -10% 0px",
-      threshold: 0.12,
-    },
-  );
-
-  observer.observe(header);
+  for (const el of elements) el.classList.remove("is-visible");
+  void layout.offsetHeight;
+  for (const el of elements) el.classList.add("is-visible");
 }
 
 // ---- Render Sidebar ----
@@ -185,21 +178,8 @@ function renderProjectDetail(project) {
     })
     .join("");
 
-  const impactList = (project.impact || [])
-    .map(function (item) {
-      return "<li>" + escapeHtml(item) + "</li>";
-    })
-    .join("");
-
-  const projectIndex = gdProjects.findIndex(function (p) {
-    return p.id === project.id;
-  });
-  const prevProject = projectIndex > 0 ? gdProjects[projectIndex - 1] : null;
-  const nextProject = projectIndex < gdProjects.length - 1
-    ? gdProjects[projectIndex + 1]
-    : null;
-
-  const titleHtml = '<div class="gd-detail-header">' +
+  const titleHtml =
+    '<div class="gd-detail-header">' +
     '<h2 class="gd-detail-title">' +
     escapeHtml(project.title) +
     "</h2>" +
@@ -211,50 +191,19 @@ function renderProjectDetail(project) {
     "</p>" +
     "</div>";
 
-  const mainHtml = "<!-- Deliverables: responsive grid with captions -->" +
+  const mainHtml =
+    "<!-- Deliverables: responsive grid with captions -->" +
     '<section class="gd-section">' +
     '<h3 class="gd-section-title">Final Deliverables</h3>' +
     '<div class="gd-deliverables-grid">' +
     deliverablesGrid +
     "</div>" +
-    "</section>" +
-    "<!-- Impact: outcomes and contribution -->" +
-    '<section class="gd-section">' +
-    '<h3 class="gd-section-title">Impact / Results</h3>' +
-    '<ul class="gd-bullet-list">' +
-    impactList +
-    "</ul>" +
-    "</section>" +
-    "<!-- Project navigation -->" +
-    '<nav class="gd-project-nav" aria-label="Project navigation">' +
-    (prevProject
-      ? '<button class="gd-project-nav-btn" data-project-id="' +
-        escapeHtml(prevProject.id) +
-        '">Previous Project</button>'
-      : '<span class="gd-project-nav-disabled">Previous Project</span>') +
-    (nextProject
-      ? '<button class="gd-project-nav-btn" data-project-id="' +
-        escapeHtml(nextProject.id) +
-        '">Next Project</button>'
-      : '<span class="gd-project-nav-disabled">Next Project</span>') +
-    "</nav>";
+    "</section>";
 
   titlePanel.innerHTML = titleHtml;
   main.innerHTML = mainHtml;
 
   syncTitleHeight();
-
-  main.querySelectorAll(".gd-project-nav-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      selectProject(btn.dataset.projectId);
-    });
-  });
-
-  // Trigger fade-in animation
-  main.classList.remove("fade-in");
-  // Force reflow so the animation restarts
-  void main.offsetWidth;
-  main.classList.add("fade-in");
 }
 
 function syncTitleHeight() {
@@ -262,7 +211,8 @@ function syncTitleHeight() {
   const titlePanel = document.querySelector(".gd-title");
   if (!sidebar || !titlePanel) return;
 
-  const isDesktop = typeof window !== "undefined" &&
+  const isDesktop =
+    typeof window !== "undefined" &&
     window.matchMedia &&
     window.matchMedia("(min-width: 901px)").matches;
 
@@ -324,12 +274,17 @@ function createGdLightbox() {
     }
   });
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      overlay.classList.remove("active");
-      overlay.style.visibility = "hidden";
-    }
-  });
+  if (!gdLightboxKeydownBound) {
+    gdLightboxKeydownBound = true;
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+
+      const activeOverlay = document.querySelector(".gd-lightbox-overlay");
+      if (!activeOverlay) return;
+      activeOverlay.classList.remove("active");
+      activeOverlay.style.visibility = "hidden";
+    });
+  }
 
   document.body.appendChild(overlay);
 }
@@ -372,7 +327,6 @@ function initGraphicDesign() {
   if (root.dataset.gdInit === "true") return;
   root.dataset.gdInit = "true";
 
-  initPageHeaderReveal();
   createGdLightbox();
   setupGdLightboxDelegation();
   renderSidebar();
@@ -383,7 +337,12 @@ function initGraphicDesign() {
 
   observeTitleHeight();
   syncTitleHeight();
-  window.addEventListener("resize", syncTitleHeight);
+  if (!gdResizeBound) {
+    gdResizeBound = true;
+    window.addEventListener("resize", syncTitleHeight);
+  }
+
+  revealGraphicDesignPage();
 }
 
 if (document.readyState === "loading") {

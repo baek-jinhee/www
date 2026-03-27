@@ -1,571 +1,557 @@
 /* ---- Illustration Layout ---- */
-.illustration-layout {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  animation: aboutFadeIn 0.5s ease forwards;
+body[data-page="illustration"] .illustration-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    will-change: opacity, transform;
 }
 
-/* ---- Page Header Scroll Reveal ---- */
 body[data-page="illustration"] .page-header {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }
 
-body[data-page="illustration"] .page-header.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+body[data-page="illustration"] .page-header.is-visible,
+body[data-page="illustration"] .illustration-layout.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .illustration-panel {
-  background: rgba(255, 255, 255, 0.88);
-  border-radius: 20px;
-  padding: 1.5rem 2rem;
-  box-shadow:
-    0 18px 60px rgba(216, 168, 216, 0.18),
-    0 6px 18px rgba(180, 210, 255, 0.12);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+    padding: 0 0 2rem;
+    border-bottom: 1px solid rgba(214, 194, 228, 0.7);
 }
 
-/* ---- Featured Section ---- */
-.illustration-featured {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.illustration-featured-header h2 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #c0a0c0;
-  margin-bottom: 0.5rem;
-}
-
-.illustration-featured-header p {
-  font-size: 0.95rem;
-  color: #777;
-  line-height: 1.6;
-  max-width: 720px;
-}
-
-.illustration-featured-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-.illustration-feature-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06), 0 1px 6px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-.illustration-feature-card-media {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.illustration-feature-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease, filter 0.35s ease;
-}
-
-.illustration-feature-card:hover .illustration-feature-card-media img {
-  transform: scale(1.02);
-  filter: brightness(0.95);
-}
-
-.illustration-feature-card-body {
-  padding: 1rem 1.1rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.illustration-feature-card-body h3 {
-  font-size: 1.05rem;
-  color: #333;
-}
-
-.illustration-feature-card-body p {
-  font-size: 0.9rem;
-  color: #777;
-  line-height: 1.6;
+.illustration-panel:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 /* ---- Year Tabs ---- */
 .year-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
 }
 
 .year-tab {
-  padding: 0.4rem 1.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  font-family: inherit;
-  border: 2px solid #e0cfe0;
-  border-radius: 20px;
-  background: transparent;
-  color: #999;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-family: inherit;
+    border: 2px solid #e0cfe0;
+    border-radius: 20px;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    transition: none;
 }
 
 .year-tab:hover {
-  background: rgba(216, 168, 216, 0.15);
-  border-color: #d8a8d8;
-  color: #666;
+    background: rgba(216, 168, 216, 0.15);
+    border-color: #d8a8d8;
+    color: #666;
 }
 
 .year-tab.active {
-  background: rgba(216, 168, 216, 0.25);
-  border-color: #d8a8d8;
-  color: #333;
+    background: rgba(216, 168, 216, 0.25);
+    border-color: #d8a8d8;
+    color: #333;
 }
 
 /* ---- Masonry Gallery (CSS columns) ---- */
 #gallery {
-  column-count: 4;
-  column-gap: 8px;
-  padding: 0;
+    column-count: 4;
+    column-gap: 8px;
+    padding: 0;
 }
 
 #gallery img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 8px;
-  break-inside: avoid;
-  transition: opacity 0.4s ease, transform 0.3s ease, filter 0.3s ease;
-  object-fit: cover;
-  opacity: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    break-inside: avoid;
+    transition:
+        opacity 0.4s ease,
+        transform 0.3s ease,
+        filter 0.3s ease;
+    object-fit: cover;
+    opacity: 0;
 }
 
 #gallery img.revealed {
-  opacity: 1;
+    opacity: 1;
 }
 
 #gallery img:hover {
-  transform: scale(0.97);
-  filter: brightness(0.9);
+    transform: scale(0.97);
+    filter: brightness(0.9);
 }
 
 /* ---- Fade-in animation for gallery swap ---- */
 #gallery.fade-in {
-  animation: galleryFadeIn 0.35s ease forwards;
+    animation: galleryFadeIn 0.35s ease forwards;
 }
 
 @keyframes galleryFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ---- Lightbox Overlay ---- */
 .lightbox-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  cursor: zoom-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    cursor: zoom-out;
 }
 
 .lightbox-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ---- Lightbox Image Wrapper ---- */
+.lightbox-content {
+    width: min(900px, 86vw);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    position: relative;
+    z-index: 2001;
+}
+
 .lightbox-image-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 86vw;
-  max-height: 90vh;
-  overflow: hidden;
-  position: relative;
-  z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 86vw;
+    max-height: min(74vh, calc(90vh - 9rem));
+    overflow: hidden;
+    position: relative;
 }
 
 .lightbox-image-wrapper img {
-  max-width: 86vw;
-  max-height: 88vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-  cursor: default;
-  transition: opacity 0.18s ease, transform 0.18s ease;
+    max-width: 100%;
+    max-height: min(74vh, calc(90vh - 9rem));
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    cursor: default;
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease;
+}
+
+.lightbox-details {
+    width: 100%;
+    max-width: min(720px, 86vw);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    pointer-events: auto;
+    cursor: default;
+}
+
+.lightbox-details.is-empty {
+    display: none;
+}
+
+.lightbox-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.3rem;
+}
+
+.lightbox-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
 }
 
 /* ---- Lightbox Slide Animations ---- */
 .lightbox-image-wrapper img.lightbox-slide-left {
-  transform: translateX(-24px);
+    transform: translateX(-24px);
 }
 
 .lightbox-image-wrapper img.lightbox-slide-right {
-  transform: translateX(24px);
+    transform: translateX(24px);
 }
 
 /* ---- Lightbox Navigation Arrows ---- */
 .lightbox-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2002;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  padding: 0;
-  outline: none;
-  touch-action: manipulation;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 0;
+    outline: none;
+    touch-action: manipulation;
 }
 
 .lightbox-prev {
-  left: 1.5rem;
+    left: 1.5rem;
 }
 
 .lightbox-next {
-  right: 1.5rem;
+    right: 1.5rem;
 }
 
 .lightbox-arrow svg {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .lightbox-arrow:hover {
-  background: rgba(216, 168, 216, 0.15);
-  border-color: rgba(216, 168, 216, 0.45);
-  color: rgba(255, 255, 255, 0.9);
-  transform: translateY(-50%) scale(1.08);
+    background: rgba(216, 168, 216, 0.15);
+    border-color: rgba(216, 168, 216, 0.45);
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.08);
 }
 
 .lightbox-arrow:active {
-  transform: translateY(-50%) scale(0.95);
-  background: rgba(216, 168, 216, 0.25);
+    transform: translateY(-50%) scale(0.95);
+    background: rgba(216, 168, 216, 0.25);
 }
 
 /* ---- Lightbox Counter ---- */
 .lightbox-counter {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2002;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.4);
-  pointer-events: none;
-  user-select: none;
-  transition: opacity 0.3s ease;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    z-index: 2003;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.3s ease;
 }
 
 /* ---- Archive View ---- */
 #gallery.archive-view {
-  display: block;
-  column-count: unset;
-  padding: 0 1rem 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+    display: block;
+    column-count: unset;
+    padding: 0 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .archive-blurb {
-  text-align: center;
-  margin-bottom: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .archive-blurb p {
-  font-size: 0.95rem;
-  color: #999;
-  font-style: italic;
+    font-size: 0.95rem;
+    color: #999;
+    font-style: italic;
 }
 
 .archive-year-section {
-  margin-bottom: 1rem;
-  border: 2px solid #f0e6f0;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.4);
-  overflow: hidden;
-  transition: border-color 0.3s ease;
+    margin-bottom: 1rem;
+    border: 2px solid #f0e6f0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
 }
 
 .archive-year-section:hover {
-  border-color: #d8a8d8;
+    border-color: #d8a8d8;
 }
 
 .archive-year-section[open] {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .archive-year-heading {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #bbb;
-  letter-spacing: 0.05em;
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  user-select: none;
-  transition: color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #bbb;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+    transition: color 0.3s ease;
 }
 
 .archive-year-heading::-webkit-details-marker {
-  display: none;
+    display: none;
 }
 
 .archive-year-heading::before {
-  content: "\25B8";
-  display: inline-block;
-  font-size: 0.75rem;
-  transition: transform 0.25s ease;
+    content: "\25B8";
+    display: inline-block;
+    font-size: 0.75rem;
+    transition: transform 0.25s ease;
 }
 
 .archive-year-section[open] .archive-year-heading::before {
-  transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .archive-year-heading:hover {
-  color: #d8a8d8;
+    color: #d8a8d8;
 }
 
 .archive-year-content {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease, padding-bottom 0.4s ease;
-  padding-bottom: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 0.4s ease,
+        opacity 0.3s ease,
+        padding-bottom 0.4s ease;
+    padding-bottom: 0;
 }
 
 .archive-year-section[open] .archive-year-content {
-  max-height: 2000px;
-  opacity: 1;
-  padding-bottom: 0.75rem;
+    max-height: 2000px;
+    opacity: 1;
+    padding-bottom: 0.75rem;
 }
 
 /* ---- Archive Masonry: CSS Grid for even square tiles ---- */
 .archive-masonry {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  padding: 0 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    padding: 0 0.75rem;
 }
 
 .archive-masonry img {
-  width: 100%;
-  aspect-ratio: 1;
-  display: block;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: opacity 0.4s ease, transform 0.3s ease, filter 0.3s ease;
-  object-fit: cover;
-  opacity: 0;
+    width: 100%;
+    aspect-ratio: 1;
+    display: block;
+    border-radius: 6px;
+    cursor: pointer;
+    transition:
+        opacity 0.4s ease,
+        transform 0.3s ease,
+        filter 0.3s ease;
+    object-fit: cover;
+    opacity: 0;
 }
 
 .archive-masonry img.revealed {
-  opacity: 1;
+    opacity: 1;
 }
 
 .archive-masonry img:hover {
-  transform: scale(0.97);
-  filter: brightness(0.9);
+    transform: scale(0.97);
+    filter: brightness(0.9);
 }
 
 .archive-empty {
-  padding: 0.75rem 1rem 1rem;
+    padding: 0.75rem 1rem 1rem;
 }
 
 .archive-empty p {
-  font-size: 0.85rem;
-  color: #ccc;
-  font-style: italic;
+    font-size: 0.85rem;
+    color: #ccc;
+    font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .illustration-layout,
+    body[data-page="illustration"] .page-header {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* ---- Responsive ---- */
 @media screen and (min-width: 601px) and (max-width: 999px) {
-  .illustration-layout {
-    padding: 0 1.5rem 2.5rem;
-  }
+    .illustration-layout {
+        padding: 0 1.5rem 2.5rem;
+    }
 
-  .illustration-panel {
-    padding: 1.4rem 1.6rem;
-  }
+    #gallery {
+        column-count: 2;
+    }
 
-  #gallery {
-    column-count: 2;
-  }
-
-  .archive-masonry {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .illustration-featured-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .archive-masonry {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media screen and (min-width: 1000px) and (max-width: 1199px) {
-  #gallery {
-    column-count: 3;
-  }
+    #gallery {
+        column-count: 3;
+    }
 
-  .archive-masonry {
-    grid-template-columns: repeat(5, 1fr);
-  }
+    .archive-masonry {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 @media screen and (max-width: 600px) {
-  .illustration-layout {
-    padding: 0 1.1rem 2rem;
-  }
+    .illustration-layout {
+        padding: 0 1.1rem 2rem;
+    }
 
-  #gallery {
-    column-count: 2;
-    column-gap: 6px;
-    padding: 0 0.5rem 1.5rem;
-  }
+    #gallery {
+        column-count: 2;
+        column-gap: 6px;
+        padding: 0 0.5rem 1.5rem;
+    }
 
-  .illustration-featured-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
+    .year-tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
 
-  .illustration-feature-card-media {
-    aspect-ratio: 16 / 9;
-  }
+    #gallery img {
+        border-radius: 4px;
+        margin-bottom: 6px;
+    }
 
-  .illustration-feature-card-body {
-    padding: 0.85rem 1rem 1rem;
-  }
+    .archive-masonry {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
 
-  .illustration-panel {
-    padding: 1.25rem 1.4rem;
-  }
+    .archive-masonry img {
+        border-radius: 4px;
+    }
 
-  .year-tabs {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+    #gallery img:hover {
+        transform: none;
+        filter: none;
+    }
 
-  #gallery img {
-    border-radius: 4px;
-    margin-bottom: 6px;
-  }
+    .archive-masonry img:hover {
+        transform: none;
+        filter: none;
+    }
 
-  .archive-masonry {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-  }
+    .archive-year-section:hover {
+        border-color: #f0e6f0;
+    }
 
-  .archive-masonry img {
-    border-radius: 4px;
-  }
+    /* Lightbox mobile adjustments */
+    .lightbox-content {
+        width: 92vw;
+        gap: 0.7rem;
+    }
 
-  #gallery img:hover {
-    transform: none;
-    filter: none;
-  }
+    .lightbox-image-wrapper {
+        max-width: 92vw;
+        max-height: min(70vh, calc(90vh - 10rem));
+    }
 
-  .archive-masonry img:hover {
-    transform: none;
-    filter: none;
-  }
+    .lightbox-image-wrapper img {
+        max-width: 92vw;
+        max-height: min(70vh, calc(90vh - 10rem));
+        border-radius: 6px;
+    }
 
-  .archive-year-section:hover {
-    border-color: #f0e6f0;
-  }
+    .lightbox-details {
+        max-width: 92vw;
+        padding: 0.7rem 0.8rem;
+    }
 
-  /* Lightbox mobile adjustments */
-  .lightbox-image-wrapper {
-    max-width: 92vw;
-  }
+    .lightbox-title {
+        font-size: 0.92rem;
+    }
 
-  .lightbox-image-wrapper img {
-    max-width: 92vw;
-    max-height: 80vh;
-    border-radius: 6px;
-  }
+    .lightbox-description {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
 
-  .lightbox-arrow {
-    width: 36px;
-    height: 36px;
-    background: rgba(0, 0, 0, 0.35);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
+    .lightbox-arrow {
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 0, 0, 0.35);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
 
-  .lightbox-arrow svg {
-    width: 16px;
-    height: 16px;
-  }
+    .lightbox-arrow svg {
+        width: 16px;
+        height: 16px;
+    }
 
-  .lightbox-prev {
-    left: 0.5rem;
-  }
+    .lightbox-prev {
+        left: 0.5rem;
+    }
 
-  .lightbox-next {
-    right: 0.5rem;
-  }
+    .lightbox-next {
+        right: 0.5rem;
+    }
 
-  .lightbox-counter {
-    bottom: 1rem;
-    font-size: 0.7rem;
-  }
+    .lightbox-counter {
+        top: 0.9rem;
+        right: 0.9rem;
+        font-size: 0.7rem;
+    }
 }
 
 @media screen and (max-width: 479px) {
-  #gallery {
-    column-count: 2;
-  }
+    #gallery {
+        column-count: 2;
+    }
 
-  .archive-masonry {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .archive-masonry {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

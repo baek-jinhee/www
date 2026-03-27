@@ -139,6 +139,8 @@ const archive = {
 // ---- State ----
 let currentYear = 2026;
 let isArchive = false;
+let hasInitialGalleryRenderCompleted = false;
+let lightboxKeydownBound = false;
 
 // ---- Lightbox state ----
 let lightboxImageList = [];
@@ -247,7 +249,8 @@ function revealImagesSequentially(container, staggerMs) {
 }
 
 // ---- Render gallery (single render, no preload blocking) ----
-function setGallery() {
+function setGallery(options) {
+  const shouldAnimate = options?.animate !== false;
   const gallery = document.getElementById("gallery");
   if (!gallery) return;
 
@@ -260,14 +263,17 @@ function setGallery() {
   }
 
   // Trigger fade-in animation
-  gallery.classList.remove("fade-in");
-  // Force reflow to restart animation
-  void gallery.offsetWidth;
-  gallery.classList.add("fade-in");
+  if (shouldAnimate) {
+    gallery.classList.remove("fade-in");
+    void gallery.offsetWidth;
+    gallery.classList.add("fade-in");
+  } else {
+    gallery.classList.remove("fade-in");
+  }
 
   // Sequentially reveal images (non-archive view)
   if (!isArchive) {
-    revealImagesSequentially(gallery, 80);
+    revealImagesSequentially(gallery, shouldAnimate ? 80 : 40);
   }
 }
 
@@ -338,7 +344,8 @@ function switchYear(year) {
     gallery.classList.toggle("archive-view", isArchive);
   }
 
-  setGallery();
+  setGallery({ animate: hasInitialGalleryRenderCompleted });
+  hasInitialGalleryRenderCompleted = true;
 }
 
 function setupYearTabs() {
@@ -352,13 +359,65 @@ function setupYearTabs() {
 
 // ---- Lightbox (with prev/next navigation) ----
 
+function getLightboxItemFromImage(img) {
+  const trigger = img.closest("[data-lightbox-item]");
+  const title = (trigger && trigger.dataset.lightboxTitle) ||
+    img.dataset.lightboxTitle ||
+    "";
+  const description = (trigger && trigger.dataset.lightboxDescription) ||
+    img.dataset.lightboxDescription ||
+    "";
+  const alt = img.alt || title;
+
+  return {
+    src: img.src,
+    alt: alt,
+    title: title,
+    description: description,
+  };
+}
+
 function collectImagesFromContainer(container) {
   const imgs = container.querySelectorAll("img");
-  const srcs = [];
+  const items = [];
   for (let i = 0; i < imgs.length; i++) {
-    srcs.push(imgs[i].src);
+    items.push(getLightboxItemFromImage(imgs[i]));
   }
-  return srcs;
+  return items;
+}
+
+function updateLightboxMeta(item) {
+  const overlay = document.querySelector(".lightbox-overlay");
+  if (!overlay) return;
+
+  const details = overlay.querySelector(".lightbox-details");
+  const titleEl = overlay.querySelector(".lightbox-title");
+  const descriptionEl = overlay.querySelector(".lightbox-description");
+  if (!details || !titleEl || !descriptionEl) return;
+
+  const title = (item && (item.title || item.alt)) || "";
+  const description = (item && item.description) || "";
+
+  if (!title && !description) {
+    titleEl.textContent = "";
+    descriptionEl.textContent = "";
+    details.classList.add("is-empty");
+    return;
+  }
+
+  titleEl.textContent = title;
+  descriptionEl.textContent = description;
+  details.classList.remove("is-empty");
+}
+
+function findImageIndexInContainer(container, targetImage) {
+  const imgs = container.querySelectorAll("img");
+  for (let i = 0; i < imgs.length; i++) {
+    if (imgs[i] === targetImage) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 function createLightbox() {
@@ -372,8 +431,14 @@ function createLightbox() {
     '<polyline points="15 18 9 12 15 6"></polyline>' +
     "</svg>" +
     "</button>" +
+    '<div class="lightbox-content">' +
     '<div class="lightbox-image-wrapper">' +
-    '<img src="" alt="Lightbox image" />' +
+    '<img src="" alt="" />' +
+    "</div>" +
+    '<div class="lightbox-details is-empty">' +
+    '<h3 class="lightbox-title"></h3>' +
+    '<p class="lightbox-description"></p>' +
+    "</div>" +
     "</div>" +
     '<button class="lightbox-arrow lightbox-next" aria-label="Next image">' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
@@ -406,20 +471,23 @@ function createLightbox() {
     });
 
   // Keyboard navigation
-  document.addEventListener("keydown", function (e) {
-    const active = overlay.classList.contains("active");
-    if (!active) return;
+  if (!lightboxKeydownBound) {
+    lightboxKeydownBound = true;
+    document.addEventListener("keydown", function (e) {
+      const activeOverlay = document.querySelector(".lightbox-overlay.active");
+      if (!activeOverlay) return;
 
-    if (e.key === "Escape") {
-      closeLightbox();
-    } else if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      navigateLightbox(-1);
-    } else if (e.key === "ArrowRight") {
-      e.preventDefault();
-      navigateLightbox(1);
-    }
-  });
+      if (e.key === "Escape") {
+        closeLightbox();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        navigateLightbox(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        navigateLightbox(1);
+      }
+    });
+  }
 
   // Touch swipe support
   let touchStartX = 0;
@@ -465,6 +533,12 @@ function createLightbox() {
 function closeLightbox() {
   const overlay = document.querySelector(".lightbox-overlay");
   if (!overlay) return;
+  const img = overlay.querySelector(".lightbox-image-wrapper img");
+  if (img) {
+    img.removeAttribute("src");
+    img.alt = "";
+  }
+  updateLightboxMeta(null);
   overlay.classList.remove("active");
   overlay.style.visibility = "hidden";
   lightboxCurrentIndex = -1;
@@ -496,7 +570,10 @@ function navigateLightbox(direction) {
   img.style.opacity = "0";
 
   setTimeout(function () {
-    img.src = lightboxImageList[lightboxCurrentIndex];
+    const nextItem = lightboxImageList[lightboxCurrentIndex];
+    img.src = nextItem.src;
+    img.alt = nextItem.alt || "";
+    updateLightboxMeta(nextItem);
     img.classList.remove("lightbox-slide-left", "lightbox-slide-right");
 
     // Animate in from opposite side
@@ -538,12 +615,11 @@ function updateArrowVisibility() {
   next.style.display = hasMultiple ? "" : "none";
 }
 
-function openLightbox(src, alt, container) {
+function openLightbox(clickedImage, container) {
   const overlay = document.querySelector(".lightbox-overlay");
   if (!overlay) return;
   const img = overlay.querySelector(".lightbox-image-wrapper img");
-  img.src = src;
-  img.alt = alt || "";
+  if (!img) return;
   overlay.style.visibility = "visible";
 
   // Reset any leftover transition classes
@@ -554,74 +630,87 @@ function openLightbox(src, alt, container) {
   lightboxImageList = collectImagesFromContainer(container);
 
   // Find index of clicked image
-  lightboxCurrentIndex = -1;
-  for (let i = 0; i < lightboxImageList.length; i++) {
-    if (lightboxImageList[i] === src) {
-      lightboxCurrentIndex = i;
-      break;
-    }
-  }
+  lightboxCurrentIndex = findImageIndexInContainer(container, clickedImage);
   if (lightboxCurrentIndex === -1) {
     // Fallback: image not found in list, just show it solo
-    lightboxImageList = [src];
+    lightboxImageList = [getLightboxItemFromImage(clickedImage)];
     lightboxCurrentIndex = 0;
   }
+
+  const currentItem = lightboxImageList[lightboxCurrentIndex];
+  img.src = currentItem.src;
+  img.alt = currentItem.alt || "";
+  updateLightboxMeta(currentItem);
 
   updateArrowVisibility();
   updateLightboxCounter();
   overlay.classList.add("active");
 }
 
-// Event delegation: single listener on #gallery handles all image clicks
+// Event delegation: one listener each for gallery and featured cards.
 function setupLightboxDelegation() {
-  const gallery = document.getElementById("gallery");
-  if (!gallery) return;
+  const containers = [
+    { element: document.getElementById("gallery"), isGallery: true },
+    {
+      element: document.querySelector(".illustration-featured-grid"),
+      isGallery: false,
+    },
+  ];
 
-  gallery.addEventListener("click", function (e) {
-    const img = e.target.closest("img");
-    if (!img) return;
+  for (let i = 0; i < containers.length; i++) {
+    const containerConfig = containers[i];
+    const container = containerConfig.element;
+    if (!container) continue;
 
-    // Scope to the archive year's masonry container if inside one,
-    // otherwise scope to the whole gallery (normal year view).
-    const archiveMasonry = img.closest(".archive-masonry");
-    const container = archiveMasonry || gallery;
+    container.addEventListener("click", function (e) {
+      const clicked = e.target;
+      if (!(clicked instanceof Element)) return;
 
-    openLightbox(img.src, img.alt, container);
-  });
+      let img = null;
+      const lightboxItem = clicked.closest("[data-lightbox-item]");
+      if (lightboxItem && container.contains(lightboxItem)) {
+        img = lightboxItem.querySelector("img");
+      } else {
+        const directImg = clicked.closest("img");
+        if (directImg && container.contains(directImg)) {
+          img = directImg;
+        }
+      }
+      if (!img) return;
+
+      // Scope archive clicks to the opened year section; other views stay local.
+      const archiveMasonry = containerConfig.isGallery
+        ? img.closest(".archive-masonry")
+        : null;
+      const lightboxContainer = archiveMasonry || container;
+
+      openLightbox(img, lightboxContainer);
+    });
+  }
 }
 
 // ---- Page Header Reveal ----
-function initIllustrationHeaderReveal() {
-  const header = document.querySelector(".page-header");
-  if (!header) return;
-  if (header.dataset.headerRevealBound === "true") return;
-  header.dataset.headerRevealBound = "true";
+function revealIllustrationPage() {
+  const layout = document.querySelector(".illustration-layout");
+  if (!layout) return;
+
+  const elements = Array.from(
+    document.querySelectorAll(".page-header, .illustration-layout"),
+  );
+  if (elements.length === 0) return;
 
   const reducedMotion = typeof window !== "undefined" &&
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (reducedMotion || typeof IntersectionObserver === "undefined") {
-    header.classList.add("is-visible");
+  if (reducedMotion) {
+    for (const el of elements) el.classList.add("is-visible");
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target);
-      }
-    },
-    {
-      root: null,
-      rootMargin: "0px 0px -10% 0px",
-      threshold: 0.12,
-    },
-  );
-
-  observer.observe(header);
+  for (const el of elements) el.classList.remove("is-visible");
+  void layout.offsetHeight;
+  for (const el of elements) el.classList.add("is-visible");
 }
 
 // ---- Reset gallery state ----
@@ -647,13 +736,14 @@ function resetMasonryState() {
 
 // ---- Initialise ----
 function initMasonry() {
-  initIllustrationHeaderReveal();
-
   const gallery = document.getElementById("gallery");
   if (!gallery) return;
   if (gallery.dataset.masonryInit === "true") {
     resetMasonryState();
-    setGallery();
+    hasInitialGalleryRenderCompleted = false;
+    setGallery({ animate: false });
+    hasInitialGalleryRenderCompleted = true;
+    revealIllustrationPage();
     return;
   }
   gallery.dataset.masonryInit = "true";
@@ -662,7 +752,10 @@ function initMasonry() {
   createLightbox();
   setupYearTabs();
   setupLightboxDelegation();
-  setGallery();
+  hasInitialGalleryRenderCompleted = false;
+  setGallery({ animate: false });
+  hasInitialGalleryRenderCompleted = true;
+  revealIllustrationPage();
 }
 
 if (document.readyState === "loading") {

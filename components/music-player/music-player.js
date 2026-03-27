@@ -193,16 +193,19 @@ class MusicPlayer {
   }
 
   updateCollapsedState() {
-    if (this.isCollapsed) {
-      if (this.musicPlayerEl) {
-        this.musicPlayerEl.classList.remove("is-expanded");
-      }
+    const isInitialPass = this.isInitialLoad;
 
-      if (this.isInitialLoad) {
+    if (this.isCollapsed) {
+      if (isInitialPass) {
+        if (this.musicPlayerEl) {
+          this.musicPlayerEl.classList.remove("is-expanded", "is-collapsing");
+        }
         this.playerContainer.style.display = "none";
         this.playerContainer.hidden = true;
-        this.isInitialLoad = false;
       } else {
+        if (this.musicPlayerEl) {
+          this.musicPlayerEl.classList.add("is-collapsing");
+        }
         this.playerContainer.classList.add("collapse");
         this.playerContainer.addEventListener(
           "animationend",
@@ -210,18 +213,31 @@ class MusicPlayer {
             if (!this.isCollapsed) return;
             this.playerContainer.style.display = "none";
             this.playerContainer.hidden = true;
+            if (this.musicPlayerEl) {
+              this.musicPlayerEl.classList.remove(
+                "is-expanded",
+                "is-collapsing",
+              );
+            }
           },
           { once: true },
         );
       }
       this.toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
+      this.toggleBtn.setAttribute("aria-label", "Expand player");
     } else {
       this.playerContainer.hidden = false;
       this.playerContainer.classList.remove("collapse");
       this.playerContainer.style.display = "grid";
-      if (this.musicPlayerEl) this.musicPlayerEl.classList.add("is-expanded");
+      if (this.musicPlayerEl) {
+        this.musicPlayerEl.classList.remove("is-collapsing");
+        this.musicPlayerEl.classList.add("is-expanded");
+      }
       this.toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
+      this.toggleBtn.setAttribute("aria-label", "Collapse player");
     }
+
+    if (isInitialPass) this.isInitialLoad = false;
   }
 
   setSongs(songs) {
